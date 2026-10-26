@@ -1,0 +1,17 @@
+name: Skill proposal
+description: Propose a focused new skill or an improvement to an existing one.
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: User task and current gap
+      description: Give a concrete use case and explain how it differs from existing skills.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Proposed scope and validation
+      description: Identify needed resources, source licenses, permission boundaries, and how useful behavior could be evaluated.
+    validations:
+      required: true

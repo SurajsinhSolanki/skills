@@ -1,0 +1,18 @@
+# Local development and generated evaluation output
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+node_modules/
+.DS_Store
+*.log
+# Local agent installations and credentials; never distribute these.
+/.agents/
+/.claude/
+/.codex/
+/.cursor/
+/.aws/
+/skills-lock.json
+.env
+.env.*
+!.env.example

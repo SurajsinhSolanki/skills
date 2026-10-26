@@ -1,0 +1,17 @@
+name: Bug report
+description: Report a reproducible skill, installation, or validation problem.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Expected and observed behavior
+      description: Include the skill name, revision, agent/CLI version, and relevant environment. Do not share private data or secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include a sanitized request or command and relevant output. Distinguish agent behavior from fixture checks.
+    validations:
+      required: true
