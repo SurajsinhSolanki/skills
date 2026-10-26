@@ -67,46 +67,34 @@ newly claimed agent target. Never use a global install for an isolated check.
 
 ## Publish
 
-No repository has been published by this setup. There is no usable Git metadata
-or known remote in the provided workspace, and the existing `.git` location
-must not be deleted or recreated. Recover the actual checkout/history if it
-exists before deciding whether to initialize anything.
+The collection is hosted at
+[SurajsinhSolanki/skills](https://github.com/SurajsinhSolanki/skills), with `main`
+as its default branch. Preserve the existing Git history and remote when making
+updates.
 
-1. Choose the GitHub owner and repository (suggested collection name:
-   `agent-skills`). Set `github` in `repository.json` to that exact `owner/repo`,
-   regenerate the catalog, and replace `OWNER/REPO` in install documentation.
-2. Run validation and inspect the staged changes for private files and secrets.
-3. In a real existing checkout, preserve history and commit the changes normally.
-   If there truly is no history, copy only the distribution files to a new empty
-   directory without the unusable `.git` mount, then initialize **there**:
-
-   ```bash
-   git init -b main
-   git add README.md LICENSE NOTICE.md CONTRIBUTING.md SECURITY.md .gitignore repository.json requirements-dev.txt skills scripts tests docs .github
-   git commit -m "Set up agent skills collection"
-   ```
-
-4. After the owner authorizes publication, create the GitHub repository with the
-   intended visibility. In that clean checkout, substitute actual coordinates:
+1. Run the validation commands above and inspect `git diff` for unintended
+   changes, private files, and secrets.
+2. Regenerate the catalog after changing skill metadata. If the repository is
+   renamed or transferred, update `repository.json` and the installation
+   documentation together.
+3. Commit the intended files and publish through the repository's reviewed
+   workflow. Inspect `git status` and `git remote -v` first; do not replace the
+   remote or force-push. Push only when authorized by the owner.
+4. Check the [validation workflow](https://github.com/SurajsinhSolanki/skills/actions/workflows/validate-skills.yml)
+   for the published commit. From a disposable project, verify discovery and an
+   individual install:
 
    ```bash
-   git remote add origin https://github.com/OWNER/REPO.git
-   git push -u origin main
+   npx skills add SurajsinhSolanki/skills --list
+   npx skills add SurajsinhSolanki/skills --skill pr-review --agent codex --yes --copy
    ```
-
-   For existing repositories inspect `git remote -v` first; do not replace a
-   remote or force-push. Configure CI/branch protection according to owner policy.
-5. From a disposable project, verify the actual public GitHub source using
-   `npx skills add OWNER/REPO --list`, then an individual install. Until this
-   succeeds, do not advertise remote installation as tested.
 
 The [Skills Directory](https://www.skills.sh/docs) documents discovery through
 CLI usage telemetry. A standard public repository is the distribution source;
 there is no custom publication manifest here. Do not claim listing, ranking, or
 submission success until checked on the live directory.
 
-For subsequent updates, validate, commit, and push through the normal reviewed
-workflow. CLI users can use its documented update/check commands. Preserve
-names and paths for compatibility; document any rename or breaking behavior
-before release. Recheck the specification, CLI behavior, pinned dependencies,
-and source-derived version guidance when upgrading them.
+CLI users can use its documented update/check commands. Preserve names and
+paths for compatibility; document any rename or breaking behavior before
+release. Recheck the specification, CLI behavior, pinned dependencies, and
+source-derived version guidance when upgrading them.

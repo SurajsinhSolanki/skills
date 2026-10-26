@@ -12,6 +12,11 @@ documents available install targets. Checked 2026-10-26 with CLI 1.7.4.
 | Cursor | `.agents/skills/pr-review/` | CLI discovery and temporary installation; package bytes compared |
 | Other CLI-supported agents | Consult the CLI's agent table | Documented installer support; not tested here |
 
+The published GitHub source was also tested with CLI 1.7.4: discovery found
+`pr-review`, and a temporary Codex copy installation matched all 75 local skill
+files. The [verification report](verification.md) records the published commit
+and successful hosted CI run.
+
 These checks verify packaging, not agent reasoning. No live agent review or
 provider integration was exercised during repository setup. Agent versions,
 permissions, context budgets, and structured output tools can affect behavior.

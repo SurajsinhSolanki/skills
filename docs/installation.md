@@ -8,24 +8,24 @@ the currently available release; pin `npx skills@1.7.4` to reproduce these check
 
 ## From GitHub
 
-Run from the project that should receive the skill. Replace `OWNER/REPO` with
-the actual GitHub coordinates; this workspace has no configured remote yet.
+Run from the project that should receive the skill. The source is
+[SurajsinhSolanki/skills](https://github.com/SurajsinhSolanki/skills).
 
 ```bash
 # Interactive skill/agent selection
-npx skills add OWNER/REPO
+npx skills add SurajsinhSolanki/skills
 # Select the existing review skill
-npx skills add OWNER/REPO --skill pr-review
+npx skills add SurajsinhSolanki/skills --skill pr-review
 # Discover without installing
-npx skills add OWNER/REPO --list
+npx skills add SurajsinhSolanki/skills --list
 # Select every skill; quote the wildcard to prevent shell expansion
-npx skills add OWNER/REPO --skill '*'
+npx skills add SurajsinhSolanki/skills --skill '*'
 # Explicit, noninteractive, project-local installation for one agent
-npx skills add OWNER/REPO --skill pr-review --agent codex --yes
+npx skills add SurajsinhSolanki/skills --skill pr-review --agent codex --yes
 ```
 
 For multiple distinct skills, the documented syntax is
-`npx skills add OWNER/REPO --skill NAME_A --skill NAME_B`. Replace both names with
+`npx skills add SurajsinhSolanki/skills --skill NAME_A --skill NAME_B`. Replace both names with
 real catalog entries. There is only one skill today; no second skill is implied.
 
 Installation is project-local by default; add `--global` only when you intend to
@@ -36,7 +36,7 @@ them. See [compatibility](compatibility.md) for verified paths and limits.
 ## From a local checkout
 
 Use an absolute or relative path to the collection; replace `/path/to/agent-skills`
-with your checkout. These commands work before GitHub publication:
+with your checkout. A local source is also useful for testing unpublished changes:
 
 ```bash
 npx skills add /path/to/agent-skills --list

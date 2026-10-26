@@ -3,7 +3,12 @@
 Checked **2026-10-26**. The initial workspace held one skill at the root, with
 72 files and no collection-level automation or license. There were no naming
 conflicts. Git reported “not a git repository”; the existing `.git` location
-was preserved. There was no discoverable GitHub owner or remote.
+was preserved. There was no discoverable GitHub owner or remote at that time.
+
+After the owner published the collection, a follow-up check confirmed the public
+repository [SurajsinhSolanki/skills](https://github.com/SurajsinhSolanki/skills),
+its `main` branch, and commit `e539272addc9bcab80fc341164c31e8b5e8ed383`.
+The collection identity and installation documentation now use these coordinates.
 
 ## Changes and preservation
 
@@ -36,6 +41,8 @@ No placeholder production skills or custom installation system were added.
 | Quoted `--skill '*'` | Passed in a temporary Codex project |
 | Repeated `--skill` for two distinct skills | Passed using disposable fixture skills outside this collection |
 | Workflow YAML and issue templates | Parsed locally; expected triggers/steps checked |
+| Published GitHub source `--list` and isolated Codex `--copy` install | Passed; all 75 files match the local skill |
+| Hosted validation workflow at `e539272` | [Passed](https://github.com/SurajsinhSolanki/skills/actions/runs/40375798411) |
 
 The CLI tests ran in fresh temporary projects with telemetry disabled. They did
 not change user-level installations. The final skill package has **75 files**,
@@ -45,7 +52,9 @@ and removed from distribution content.
 Tooling used: Node.js 24.16.0, Python 3.14.4, Skills CLI 1.7.4, and the official
 Agent Skills reference validator at upstream commit
 `69ef37e9424c0a7ea9dd2293b559e43ec8176379`. CI targets Python 3.12 on Ubuntu;
-the equivalent Python commands ran locally, not on a hosted Actions runner.
+the initial equivalent Python commands ran locally. The later published commit
+also passed the hosted workflow, as recorded above. Follow-up documentation
+changes remain local until the owner commits and pushes them.
 The validator dependency is pinned to that commit. CLI support and layout were
 checked against the [specification](https://agentskills.io/specification),
 [CLI commands](https://github.com/vercel-labs/skills/blob/main/docs/commands.md),
@@ -53,11 +62,10 @@ and [skill discovery documentation](https://github.com/vercel-labs/skills/blob/m
 
 ## Limits and remaining owner work
 
-- No public GitHub source exists in the available configuration. GitHub-source
-  installation, visibility, actual hosted CI, and a skills.sh listing remain
-  unverified. No push or publication was performed. Follow the
-  [publishing instructions](development.md#publish) after choosing coordinates
-  and recovering any existing Git history.
+- Public GitHub discovery, installation, and hosted CI are now verified for the
+  published commit above. A skills.sh listing remains unverified. The owner
+  performed the initial push; no push was performed during this follow-up.
+  Follow the [publishing instructions](development.md#publish) for updates.
 - Installation and fixture checks are not live agent reviews. Blind behavioral
   evaluation and real provider access still need separate runs.
 - Pydantic was not installed; its optional executable example skipped. That

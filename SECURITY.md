@@ -1,9 +1,9 @@
 # Security
 
 Do not post live credentials, private repository contents, or customer data in
-public issues. Once this repository is hosted, use GitHub's private vulnerability
-reporting if enabled, or the owner's established private security channel. No
-private contact or hosted reporting endpoint is configured in this workspace.
+public issues. Use GitHub's private vulnerability reporting if enabled, or the
+owner's established private security channel. This repository does not publish
+a dedicated security contact; do not assume private reporting is enabled.
 If a secret was exposed, revoke it through its issuer; deleting a line does not
 remove it from Git history.
 

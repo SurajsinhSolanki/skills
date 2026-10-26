@@ -11,15 +11,13 @@ remain together in one installable package. Load references selectively.
 
 ## Install
 
-A GitHub owner and repository have not yet been configured. `OWNER/REPO` below
-is a parameter to replace after publishing; it is not a live installation source.
 From your target project, with Node.js 22.20 or newer:
 
 ```bash
-npx skills add OWNER/REPO
-npx skills add OWNER/REPO --skill pr-review
-npx skills add OWNER/REPO --list
-npx skills add OWNER/REPO --skill '*'
+npx skills add SurajsinhSolanki/skills
+npx skills add SurajsinhSolanki/skills --skill pr-review
+npx skills add SurajsinhSolanki/skills --list
+npx skills add SurajsinhSolanki/skills --skill '*'
 ```
 
 The official CLI documents Claude Code, Codex, Cursor, and other agents.
@@ -32,13 +30,13 @@ agent selection, multiple skills, scope, and troubleshooting.
 <!-- SKILLS:START -->
 | Skill | Description | Installation |
 |---|---|---|
-| [pr-review](skills/pr-review/SKILL.md) | Review pull requests, branch comparisons, staged changes, or working-tree diffs for correctness, requirements, security, reliability, and production readiness. Use for pre-merge reviews, re-reviews after fixes, or “is this safe to ship?” requests. Produces evidence-backed findings and an approval, request-changes, or incomplete assessment; supports inline comments and host-structured findings. Reviews only, without applying fixes. | `npx skills add OWNER/REPO --skill pr-review` |
+| [pr-review](skills/pr-review/SKILL.md) | Review pull requests, branch comparisons, staged changes, or working-tree diffs for correctness, requirements, security, reliability, and production readiness. Use for pre-merge reviews, re-reviews after fixes, or “is this safe to ship?” requests. Produces evidence-backed findings and an approval, request-changes, or incomplete assessment; supports inline comments and host-structured findings. Reviews only, without applying fixes. | `npx skills add SurajsinhSolanki/skills --skill pr-review` |
 <!-- SKILLS:END -->
 
 The table is generated from skill metadata. Run
 `python scripts/update_catalog.py` after adding or updating a skill; CI rejects
-stale catalogs. Set `github` in [repository.json](repository.json) to the actual
-`owner/repo` before publishing to generate concrete catalog commands.
+stale catalogs. The installation source is configured in
+[repository.json](repository.json); update it if the repository moves.
 
 ## Use
 
