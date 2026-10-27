@@ -1,0 +1,42 @@
+# Architecture
+
+Owner note: keep the incident timeline.
+
+## Submit flow
+
+The current entry point, `app.api.submit(payload, store)`, checks the name,
+updates the supplied store on success, and returns a status/body tuple.
+
+```mermaid
+flowchart LR
+    n1["Caller"] --> n2["submit(payload, store)"]
+    n2 --> n3{"Is payload.get('name') truthy?"}
+    n3 -->|No| n4["Return 400: missing name"]
+    n3 -->|Yes| n5["Append payload['name'] to store"]
+    n5 --> n6["Return 201: created true"]
+```
+
+A missing or falsey `name` returns `(400, {"error": "missing name"})` without
+changing the store. A truthy name is appended unchanged before the function
+returns `(201, {"created": True})`. This is a truthiness check, with no type or
+whitespace validation. The supplied store is an in-memory list according to the
+project README; the function itself accepts any compatible object with `append`.
+
+Evidence:
+
+- [app/api.py](../app/api.py), `submit`, lines 1–5: entry point, condition,
+  failure response, append, and success response in that order.
+- [README.md](../README.md): entry point and in-memory store context.
+
+The caller is an interface boundary; no caller implementation or HTTP route
+registration is shown in the supplied source. The `ROUTE` constant in
+[app/route_labels.py](../app/route_labels.py) is not connected to `submit` by the
+current code. Errors from incompatible payloads or a failing `append` are not
+caught here, and successful return does not establish durable persistence.
+
+This view reflects the inspected workspace based on commit `6bd9b98`, with
+pre-existing untracked user work. [compose.yaml](../compose.yaml) is a proposed
+local configuration, not evidence of deployed topology or runtime behavior.
+Mermaid syntax and rendered layout could not be checked with local tooling;
+the diagram uses basic flowchart syntax, and the destination renderer version
+is unknown.

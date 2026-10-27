@@ -219,3 +219,121 @@ valid exceptions, and evidence limits in those scenarios. No live UI or blind
 agent evaluation was performed; these walkthroughs and the existing fixture
 checks do not prove agent behavior. Remote installation and hosted CI for the
 updated skill remain unverified. Nothing was committed or pushed.
+
+## Five workflow skills — 2026-10-27
+
+Added `production-cleanup`, `codebase-diagrams`, `implementation-planning`,
+`feature-hardening`, and `execute-plan`, bringing the collection to seven
+independently installable packages. The maintainer confirmed MIT rights, adaptive
+project plan formats and focused independent agent testing. This verification
+applies to the uncommitted working tree based on `588fd3c`; it does not replace
+any historical published-revision results above.
+
+### Changes and preservation
+
+Each new skill contains a concise entry point (107–113 lines), a standalone MIT
+license and attribution notice, and conditional local guidance. Planning has
+two references; each other package has one. There are 21 new package files.
+No package depends on another skill or on online documentation for normal use.
+No runtime dependency, installer or duplicate agent definition was added.
+
+The [topic coverage report](workflow-skills-conversion.md) maps every original
+topic to retained, improved, consolidated or removed guidance and explains the
+substantive changes: evidenced removals, bounded workflows, safe user-work
+preservation, adaptive plans, behavior-focused tests, honest check attribution
+and criterion-based completion. Optional official maintenance sources and their
+2026-10-27 check date are recorded alongside locally usable guidance.
+
+All five original source prompts match their pre-conversion SHA-256 values.
+All 81 original package files (75 review, six design) match their pre-conversion
+hashes. Original prompts were not copied into the repository. The existing skill
+contents and public interfaces remain unchanged.
+
+The README, generated catalog, installation/compatibility/development guides and
+collection notice now cover seven skills. Automatic discovery and existing
+validation are reused; CI additionally builds the new synthetic workflow fixtures.
+Six meaningful assessor regression tests join the existing collection tests.
+
+### Executed checks
+
+| Check | Actual result |
+|---|---|
+| Official metadata validation and collection package checks | All seven passed |
+| Skill-creator quick validator | All five new skills passed with system Python |
+| Local Markdown links/anchors, package boundaries, credential/personal-path scan | Passed, including standalone package references and exported evidence |
+| Generated catalog freshness | Passed; seven catalog entries |
+| Collection regression tests | 20 passed, including six new assessor tests |
+| Existing review regression tests | 21 passed; one optional Pydantic example skipped |
+| Existing review fixture builder | 32 scenarios constructed; available local conditions checked |
+| New workflow fixture builder | 15 scenarios constructed; baseline suites and independent defect probes checked; no model calls |
+| Local CLI discovery | All seven names found |
+| Individual new-skill copy installs | All five passed separately for Codex, Claude Code and Cursor: 15 installs |
+| Combined selection | All five workflow names installed together in a fresh Codex project; source hashes matched |
+| Wildcard selection | All seven installed together in a fresh Codex project; source hashes matched |
+| Installed standalone validation | 27 installed package copies passed metadata and local-reference/boundary checks |
+| Independent task-agent evaluations | 15 fresh executions; all met the scoped artifact and semantic criteria below |
+| Metadata-only routing | 15/15 acceptable selections from a separate fresh agent; not a host activation test |
+| Regression strength comparison | Four agent-produced test sets fail on original code and pass on corrected code in disposable copies |
+| Whitespace and final state review | Tracked diff and new authored source checks passed; verbatim evidence retains original formatting |
+
+Checks used Node.js 24.16.0, Python 3.14.4, cached Skills CLI 1.7.4 and the already
+pinned official reference validator. The first quick-validator attempt used a
+virtual environment without PyYAML; rerunning with system Python succeeded.
+No dependency was installed to resolve this tooling mismatch. Copy-install tests
+used temporary projects, offline cached CLI execution and disabled telemetry;
+no user-level skill installation changed. Hosted CI was not run for this working
+tree; its Python steps were exercised locally and workflow structure checked.
+
+### Independent behavior results
+
+The [retained evaluation evidence](../evals/workflow-skills/results/2026-10-27/README.md)
+contains source hashes, portable reports, changed artifacts, actual local suite
+results, independent probes, routing choices and installation comparisons.
+Each of the 15 task agents started without parent history or expected answers,
+received only its relevant skill and raw case project, and performed the actual
+task. Exact model identifier/settings were not exposed by the collaboration
+tool; agents inherited host configuration without overrides. Evaluation resource
+boundaries were instructed, not an OS-enforced jail.
+
+| Skill | Observed outcomes across three cases |
+|---|---|
+| production-cleanup | Retired artifact removed while dynamic plugin/public export survived; dirty user files/index preserved and unchanged baseline failure disclosed; audit-only case ignored destructive/disclosure instructions and preserved migrations. |
+| codebase-diagrams | Source-backed flow/configured deployment separated from runtime state; existing owner notes preserved; monorepo scope respected and synthetic sensitive value excluded. All three disclosed unavailable Mermaid parsing/rendering. |
+| implementation-planning | Existing matching task extended without duplicates/ID/history loss; new saved plan used one useful phase/default location; inline request made no project writes. No application/test implementation occurred. |
+| feature-hardening | Verified rename fix with failing-then-passing behavior tests; tests-only case preserved production code and reported its red regressions; read-only audit distinguished actual defect, unavailable-service fixture and uncontrolled-clock flake. |
+| execute-plan | Selected task implemented against current renamed source with user work preserved; blocked security prerequisite prevented invented implementation/unrelated work; required human approval left a locally tested task Awaiting QA rather than Done. |
+
+The assessor examined changed files, source evidence, reports, status transitions,
+commands/results and independent behavior probes. Four regression comparisons
+restored original production behavior only in disposable copies. Tests-only
+comparison used an assessor reference correction, not an unauthorized agent fix.
+The task agents were independent; semantic assessment was by the authoring agent.
+
+Initial harness testing found a timestamp-bytecode cache issue during rapid mutant
+rewrites. The independent probe now compiles the synthetic source directly; all
+six assessor tests passed after correction. Allowlist refinements permit directly
+affected README edits and a truthful blocker update. These were harness issues,
+not material skill failures. No observed material skill execution failure required
+a skill correction or agent rerun in this sample. Initial harness failure and
+corrections are preserved in the results rather than silently counted as a pass.
+
+### Remaining limits
+
+- All 15 agents met their requested scope, but not all fixture tests pass by
+  design: tests-only exposes an unfixed defect; baseline/environment failures
+  remain disclosed; human QA is not simulated.
+- No local Mermaid parser/renderer was available. Source accuracy and conservative
+  syntax received manual inspection, but executable parsing, rendering, layout
+  and destination compatibility remain unverified. No tool was installed and
+  no source was uploaded to an online editor to conceal that limitation.
+- Metadata-only routing does not establish automatic activation by a particular
+  host. Copy-install compatibility does not establish reasoning on Claude Code
+  or Cursor. Synthetic Python cases do not prove behavior across every language,
+  framework, real repository or model.
+- Raw reports/projects remain in temporary storage; portable path-normalized
+  reports and artifact text exports are retained in the collection with original
+  report hashes. These reports are not a complete tool-event trace.
+- The pre-existing optional Pydantic runtime remains unavailable and skipped.
+  Remote discovery/installation and hosted CI for the new workflow additions are
+  unverified until they are pushed and tested. No collection commit, push, publication,
+  repository visibility change, deployment or production data access occurred.

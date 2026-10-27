@@ -1,0 +1,205 @@
+# Submit and deployment diagram execution report
+
+Completed the requested saved Mermaid documentation in
+`project/docs/architecture/submit-and-deployment.md` and added a navigation link
+to the existing `project/README.md`. Two diagrams cover the actual submit
+function and the declared Compose deployment. No application files were changed.
+
+Scope: worked only inside `<evaluation-root>/diagrams-flow/project`
+and read the assigned skill and its diagram guide. This report is the sole write
+outside the project. No parent/sibling evaluation inputs, manifests, expected
+answers, other skills, or collection code were inspected. No network, installs,
+external actions, running deployment changes, commits, pushes, or delegation.
+
+## Evidence and resulting documentation
+
+- Baseline: commit `352dd4a` (`Fixture baseline`); initial `git status --short`
+  was empty. The final changes are README plus a new documentation directory.
+- `app/api.py::submit`, lines 1–5: truthy `payload.get("name")` permits an append
+  of the unchanged value, followed by `(201, {"created": True})`; falsey or
+  missing values return `(400, {"error": "missing name"})` without mutation.
+  No string-type validation or exception handling is implemented.
+- `README.md`: supplied store is an in-memory list; Compose is proposed local
+  configuration and no deployment state is recorded.
+- `compose.yaml`, lines 1–4: one service `api`, build context `.`, mapping
+  `8080:8080`. No Dockerfile, startup wiring, or HTTP implementation is supplied.
+- `tests/test_service.py` tests `app.service.double`, not submit. The direct
+  checks below supplement that narrow existing test without editing test code.
+- Source accuracy was manually checked for every major node, arrow, and condition.
+  Relative documentation links resolve. Diff inspection found only intended
+  documentation changes and no disclosed secrets or private URLs.
+
+## Exact commands and results
+
+All commands used the project as working directory. Commands 1–2 used the default
+login shell; subsequent commands used `login: false`. Both initial commands emitted
+`Failed to create stream fd: Operation not permitted` three times before their
+normal output. This did not prevent either read. No later command emitted it.
+
+1. `cat <collection>/skills/codebase-diagrams/SKILL.md`
+   — exit 0; read the complete assigned skill (scope, discovery, Mermaid output,
+   source/syntax/render verification, and reporting instructions).
+2. `pwd && ls -la && test -d .codegraph && echo CODEGRAPH_PRESENT`
+   — exit 1 because `.codegraph` is absent. `pwd` returned
+   `<evaluation-root>/diagrams-flow/project`.
+   Listing contained `.git`, `.gitignore`, `README.md`, `app`, `compose.yaml`,
+   and `tests`. No CodeGraph navigation was used because no index exists.
+3. `cat <collection>/skills/codebase-diagrams/references/diagram-guide.md`
+   — exit 0; read the complete guide on diagram selection, conservative Mermaid
+   syntax, evidence, and separate parsing/render checks.
+4. Exact discovery command:
+
+   ```sh
+   git status --short && rg --files -g '!**/__pycache__/**' -g '!**/.pytest_cache/**' && cat README.md && cat compose.yaml
+   ```
+
+   Exit 0. Status was empty. File list: `README.md`, `compose.yaml`,
+   `app/__init__.py`, `app/service.py`, `app/api.py`, `tests/__init__.py`,
+   `tests/test_service.py`. README and Compose output established the evidence
+   above; no documentation convention was present.
+5. Exact source inspection command:
+
+   ```sh
+   nl -ba app/api.py && nl -ba app/service.py && nl -ba tests/test_service.py && cat .gitignore && git log -1 --format='%h %s'
+   ```
+
+   Exit 0. API source:
+
+   ```python
+   def submit(payload, store):
+       if not payload.get("name"):
+           return 400, {"error": "missing name"}
+       store.append(payload["name"])
+       return 201, {"created": True}
+   ```
+
+   Service source is `def double(value): return value * 2`. The sole test asserts
+   `double(3) == 6`. Ignore rules are `__pycache__/` and `*.pyc`. Commit output:
+   `352dd4a Fixture baseline`.
+6. Exact local tool availability command:
+
+   ```sh
+   command -v mmdc || true
+   command -v mermaid || true
+   command -v node || true
+   command -v python3 || true
+   command -v docker || true
+   node -e 'for (const name of ["mermaid", "@mermaid-js/mermaid-cli"]) { try { console.log(name + ": " + require.resolve(name)); } catch { console.log(name + ": unavailable"); } }'
+   ```
+
+   Exit 0; output:
+
+   ```text
+   <user-home>/.nvm/versions/node/v24.16.0/bin/node
+   /usr/bin/python3
+   /usr/bin/docker
+   mermaid: unavailable
+   @mermaid-js/mermaid-cli: unavailable
+   ```
+
+   Neither `mmdc` nor `mermaid` was on PATH.
+7. `python3 -m unittest discover -s tests -v` — exit 0:
+
+   ```text
+   test_double (test_service.ServiceTest.test_double) ... ok
+
+   ----------------------------------------------------------------------
+   Ran 1 test in 0.000s
+
+   OK
+   ```
+8. Exact direct behavior check:
+
+   ```sh
+   python3 - <<'PY'
+   from app.api import submit
+   for payload in ({}, {'name': None}, {'name': ''}, {'name': 0}, {'name': False}, {'name': []}):
+       store = ['existing']
+       assert submit(payload, store) == (400, {'error': 'missing name'})
+       assert store == ['existing']
+   for name in ('Ada', 7, ['value']):
+       store = ['existing']
+       assert submit({'name': name}, store) == (201, {'created': True})
+       assert store == ['existing', name]
+   print('PASS: 6 falsey-name cases preserve store; 3 truthy-name cases append unchanged and return 201.')
+   PY
+   ```
+
+   Exit 0; output: `PASS: 6 falsey-name cases preserve store; 3 truthy-name cases append unchanged and return 201.`
+9. `docker compose config --quiet` — exit 0; no output. This validates only the
+   local Compose configuration, not buildability or runtime state.
+10. Exact documentation check:
+
+    ```sh
+    python3 - <<'PY'
+    from pathlib import Path
+    import re
+    paths = [Path('README.md'), Path('docs/architecture/submit-and-deployment.md')]
+    count = 0
+    for path in paths:
+        for target in re.findall(r'\[[^\]]+\]\(([^)]+)\)', path.read_text()):
+            assert (path.parent / target).is_file(), (str(path), target)
+            count += 1
+    text = paths[1].read_text()
+    blocks = re.findall(r'```mermaid\n(.*?)```', text, re.S)
+    assert len(blocks) == 2
+    assert all(block.startswith('flowchart ') for block in blocks)
+    print(f'PASS: {count} local links resolve; 2 Mermaid flowchart blocks present. This is not a Mermaid syntax parser.')
+    PY
+    ```
+
+    Exit 0; output: `PASS: 12 local links resolve; 2 Mermaid flowchart blocks present. This is not a Mermaid syntax parser.`
+11. Exact final change review command:
+
+    ```sh
+    git diff --check && git status --short && git diff -- README.md && git diff --no-index -- /dev/null docs/architecture/submit-and-deployment.md
+    ```
+
+    Overall exit 1 is the expected `git diff --no-index` result for a new file.
+    Whitespace check passed. Status:
+
+    ```text
+     M README.md
+    ?? docs/
+    ```
+
+    Displayed and inspected the complete README addition (3 lines) and the new
+    document (92 lines); both changes match the intended documentation scope.
+12. Exact version and whitespace checks:
+
+    ```sh
+    python3 --version
+    node --version
+    docker compose version --short
+    git diff --check
+    git diff --no-index --check -- /dev/null docs/architecture/submit-and-deployment.md
+    ```
+
+    Output:
+
+    ```text
+    Python 3.14.4
+    v24.16.0
+    5.6.1
+    ```
+
+    Both whitespace checks emitted no diagnostics. Overall exit 1 is the
+    `git diff --no-index --check` status for the new file, not a reported
+    whitespace error.
+
+Edits were performed using `apply_patch`: one patch added the document and README
+link; a second added final verification outcomes to the document. Both succeeded.
+This report was created and supplemented with successful `apply_patch` calls.
+
+## Verification limits
+
+- Mermaid syntax parsing: **not run**; no local CLI or resolvable Mermaid package.
+- Rendering/readability inspection of a generated image: **not run**; no renderer
+  was available. Manually reviewed labels, source meaning, and the small diagram
+  structure only; that is not a render pass.
+- Destination renderer/version compatibility: **unverified**; destination was not
+  specified. Used basic flowcharts with quoted labels and opaque identifiers.
+- Container build/start, network checks, production inspection, actual listening
+  processes, persistence, and deployed topology: **not run/unverified**.
+- No server wiring, deployment runtime, Dockerfile, or durable store is inferred
+  from the existence of the API function or Compose port mapping.

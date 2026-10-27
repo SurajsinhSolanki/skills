@@ -1,0 +1,17 @@
+[
+  {"id":1,"selected":"production-cleanup","reason":"Removes confirmed obsolete artifacts while preserving behavior."},
+  {"id":2,"selected":"pr-review","reason":"Explicit PR review with no code changes."},
+  {"id":3,"selected":"production-cleanup","reason":"Audit-only dependency cleanup and safe removal recommendations."},
+  {"id":4,"selected":"codebase-diagrams","reason":"Documents an existing API request flow with a Mermaid sequence diagram."},
+  {"id":5,"selected":"design-psychology-rules","reason":"Designs a user-facing checkout screen mockup."},
+  {"id":6,"selected":"codebase-diagrams","reason":"Visually explains existing architecture without implementation planning."},
+  {"id":7,"selected":"implementation-planning","reason":"Plans a feature within an existing roadmap without implementing it."},
+  {"id":8,"selected":"execute-plan","reason":"Implements a selected ready roadmap task."},
+  {"id":9,"selected":"implementation-planning","reason":"Requests an inline implementation plan without saved roadmap files."},
+  {"id":10,"selected":"feature-hardening","reason":"Hardens one feature through invalid-input investigation, narrow fixes, and regression tests."},
+  {"id":11,"selected":"none","reason":"A simple variable rename does not need any supplied workflow skill."},
+  {"id":12,"selected":"feature-hardening","reason":"Feature-focused validation testing explicitly fits its tests-only scope."},
+  {"id":13,"selected":"execute-plan","reason":"Selects and implements the next ready roadmap task and verifies acceptance criteria."},
+  {"id":14,"selected":"implementation-planning","reason":"Updates an existing roadmap for a feature with planning-only scope."},
+  {"id":15,"selected":"execute-plan","reason":"Executes a selected plan task, including verification and task-status updates."}
+]

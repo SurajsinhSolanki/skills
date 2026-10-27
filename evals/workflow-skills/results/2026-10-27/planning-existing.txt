@@ -1,0 +1,223 @@
+# Planning execution report
+
+Request: Update the roadmap to add whitespace validation for profile display
+names. Plan only.
+
+Completed: updated the existing UX-9 task in
+`<evaluation-root>/planning-existing/project/roadmap.md`.
+The task remains Ready and depends on UX-7. The owner note, ordering, completed
+UX-7 record, UX-10 task and UX-10 dependency on UX-9 are preserved. No task was
+duplicated. The obsolete `app/old_profile.py` hint now points to the existing
+`app/profile.py::Profile.rename`.
+
+The plan specifies test additions first, then validation before assignment, then
+the local unittest suite. Acceptance covers empty strings, ASCII and Unicode
+whitespace-only strings, ValueError, unchanged stored state on rejection, and
+exact storage/return of valid input, including surrounding whitespace. Scope is
+the existing rename task for string names; constructor behavior is excluded.
+The next ready task is UX-9. No material unresolved decision was found.
+
+## Evidence and limits
+
+- README.md documents nonblank display names, ValueError on rejection, preserving
+  stored state and preserving valid input exactly.
+- app/profile.py::Profile.rename currently assigns and returns the supplied name
+  without validation.
+- tests/test_profile.py has one valid-name case and no rejection coverage.
+- The repository has no `.codegraph/` directory, so CodeGraph was not used.
+- Initial `git status --short` and both roadmap diffs were empty. Final status
+  lists only ` M roadmap.md`. Existing work was preserved.
+- The baseline suite passed two existing tests. This does not verify the proposed
+  whitespace validation; application code and tests were not edited. No completion
+  status or historical verification was upgraded based on planning.
+- Documentation diff and referenced local file paths were checked. There are no
+  Markdown links added by this update.
+- No network, installs, commits, pushes, external actions or delegation occurred.
+  Inspection stayed within this project and the requested skill resources.
+
+## Exact shell commands and results
+
+All shell commands ran in
+`<evaluation-root>/planning-existing/project`.
+Every shell invocation exited 0 and emitted this environment warning three times:
+
+```text
+Failed to create stream fd: Operation not permitted
+```
+
+1. Read the requested skill:
+
+```sh
+cat <collection>/skills/implementation-planning/SKILL.md
+```
+
+Result: the complete implementation-planning skill was returned successfully.
+Applied its plan-only, inspect-first and saved-roadmap maintenance requirements.
+
+2. Inspected repository status, CodeGraph availability and planning documents:
+
+```sh
+pwd && git status --short && if [ -d .codegraph ]; then echo CODEGRAPH_PRESENT; else echo CODEGRAPH_ABSENT; fi && rg --files -g 'AGENTS.md' -g '*.md' -g '!node_modules' -g '!vendor' -g '!dist'
+```
+
+Output after the warnings:
+
+```text
+<evaluation-root>/planning-existing/project
+CODEGRAPH_ABSENT
+README.md
+roadmap.md
+```
+
+The status output was empty, and no repository AGENTS.md was listed.
+
+3. Read the skill's saved-roadmap guidance:
+
+```sh
+cat <collection>/skills/implementation-planning/references/roadmap.md
+```
+
+Result: the complete saved-roadmap guidance was returned successfully. It directs
+reusing unfinished matching tasks and preserving format, ordering and history.
+
+Commands 2 and 3 ran concurrently; their results were both inspected.
+
+4. Read project requirements and existing roadmap, then inventoried local files:
+
+```sh
+cat README.md roadmap.md && rg --files -g '!node_modules' -g '!vendor' -g '!dist'
+```
+
+Output after the warnings:
+
+```text
+# Example project
+
+Local checks: `python3 -m unittest discover -s tests -v`.
+
+Profile contract: display names must be nonblank; preserve valid input exactly.
+Use ValueError for invalid names and keep the stored name on rejection.
+# Delivery roadmap
+
+Owner note: preserve ordering.
+
+## UX-7 — Profile storage
+Status: Done
+Verified: existing storage checks.
+
+## UX-9 — Validate profile names
+Status: Ready
+Depends on: UX-7
+Implementation hint: app/old_profile.py::Profile.rename
+Acceptance: reject empty names with ValueError, preserve old state and valid input.
+
+## UX-10 — Add avatars
+Status: Ready
+Depends on: UX-9
+README.md
+roadmap.md
+app/__init__.py
+app/service.py
+app/profile.py
+tests/__init__.py
+tests/test_profile.py
+tests/test_service.py
+```
+
+5. Inspected implementation, test coverage and preexisting roadmap changes:
+
+```sh
+cat app/profile.py app/service.py tests/test_profile.py tests/test_service.py && git diff -- roadmap.md && git diff --cached -- roadmap.md
+```
+
+Output after the warnings:
+
+```text
+class Profile:
+    def __init__(self, name="Ada"):
+        self.name = name
+
+    def rename(self, name):
+        self.name = name
+        return self.name
+def double(value):
+    return value * 2
+import unittest
+from app.profile import Profile
+class ProfileTest(unittest.TestCase):
+    def test_valid_name(self):
+        p = Profile()
+        self.assertEqual(p.rename("Grace"), "Grace")
+import unittest
+from app.service import double
+
+class ServiceTest(unittest.TestCase):
+    def test_double(self):
+        self.assertEqual(double(3), 6)
+```
+
+Both roadmap diffs were empty. The small service file/test were incidental to
+confirming the project's existing test command and scope.
+
+6. Ran the existing local test command:
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+Output after the warnings:
+
+```text
+test_valid_name (test_profile.ProfileTest.test_valid_name) ... ok
+test_double (test_service.ServiceTest.test_double) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+```
+
+7. Checked the documentation diff, final status, line numbers and referenced paths:
+
+```sh
+git diff --check && git diff -- roadmap.md && git status --short && nl -ba roadmap.md && for target in README.md app/profile.py tests/test_profile.py; do test -f "$target" || exit 1; done
+```
+
+Result: `git diff --check` emitted nothing; the file-existence checks passed.
+`git status --short` returned exactly ` M roadmap.md`.
+The diff replaced the two old UX-9 implementation/acceptance lines with the
+evidence, scope, sequence and acceptance below; every other roadmap line was
+unchanged. `nl -ba roadmap.md` confirmed UX-9 starts at line 9 and UX-10 at line 35.
+
+```markdown
+Current evidence: README.md requires nonblank display names and exact preservation
+of valid input. app/profile.py::Profile.rename currently assigns every supplied
+name without validation; tests/test_profile.py::ProfileTest.test_valid_name only
+covers a valid name.
+Implementation hint: extend app/profile.py::Profile.rename before assigning name.
+Scope: string display names passed to rename; constructor behavior and other
+profile features are outside this task.
+Implementation order:
+1. Extend tests/test_profile.py to cover empty and whitespace-only rejection,
+   unchanged state on rejection, and exact preservation of valid names.
+2. Reject names whose strip() result is empty with ValueError before assignment.
+   Use strip() only to detect blank input; store and return valid input exactly.
+3. Run python3 -m unittest discover -s tests -v, including the profile regression
+   cases, before considering this task complete.
+Acceptance:
+- Empty strings and whitespace-only strings (spaces, tabs, newlines, mixed
+  whitespace, and Unicode whitespace such as a nonbreaking space) raise ValueError.
+- Rejection leaves the previously stored name unchanged.
+- Valid names, including names containing internal or surrounding whitespace,
+  are stored and returned exactly as supplied.
+Verification: focused cases in tests/test_profile.py plus the full local unittest
+suite above. Planning does not establish implementation or acceptance completion.
+```
+
+Commands 6 and 7 ran concurrently; their results were both inspected.
+
+## File write operations
+
+`apply_patch` updated only `project/roadmap.md` as described above and returned
+success (`{}`). A second `apply_patch` created this required report outside the
+project. No application implementation was performed.

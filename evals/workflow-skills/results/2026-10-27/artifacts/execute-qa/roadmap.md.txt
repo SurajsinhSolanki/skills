@@ -1,0 +1,21 @@
+# Delivery roadmap
+
+Owner note: preserve ordering.
+
+## UX-7 — Profile storage
+Status: Done
+Verified: existing storage checks.
+
+## UX-9 — Validate profile names
+Status: Awaiting QA
+Depends on: UX-7
+Implementation: app/profile.py::Profile.rename (current location; replaces stale app/old_profile.py hint).
+Acceptance: reject empty names with ValueError, preserve old state and valid input.
+Manual copy approval by product owner is also required; no approval supplied.
+Implemented: empty and whitespace-only names raise ValueError before changing the stored name; valid input is preserved exactly.
+Verified: baseline local suite passed 2 tests; updated focused suite passed 3 tests and full local suite passed 4 tests.
+QA remaining: product owner must manually approve the validation copy, "Display name must not be blank". Task is not Done until this required approval is supplied.
+
+## UX-10 — Add avatars
+Status: Not started
+Depends on: UX-9

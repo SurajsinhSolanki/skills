@@ -1,0 +1,97 @@
+# Profile rename tests-only hardening
+
+Completed the requested test additions. Production code was left unchanged, and
+the new regression test deliberately remains failing because it exposes an
+existing production defect.
+
+## Scope and starting state
+
+- Project: `<evaluation-root>/hardening-tests-only/project`.
+- Applied `<collection>/skills/feature-hardening/SKILL.md`
+  and its `references/scenarios.md` guidance.
+- Initial `git status --short`, unstaged diff and staged diff were empty.
+- No `.codegraph/` directory exists, so CodeGraph was not used.
+- README requires nonblank names, `ValueError` for invalid names, preservation
+  of the stored name on rejection, and exact preservation of valid input.
+- The complete feature flow is `Profile.rename(name)` assigning `self.name`
+  and returning it in `app/profile.py:5`. This is in-memory state; there are no
+  request handlers, database calls, external services or async callbacks here.
+
+## Changes and scenario evidence
+
+Only `tests/test_profile.py` changed, adding two test methods and retaining the
+existing test unchanged. Each invalid input uses a fresh `Profile("Grace")`.
+Independent subtests record rejection and stored state, so failed rejection
+does not hide the state-mutation evidence.
+
+| Scenario | Action and expected outcome | Evidence |
+| --- | --- | --- |
+| Ordinary valid name | Existing test renames to `"Grace"`; returns `"Grace"` | Existing test passes before and after additions |
+| Empty string | Rename with `""`; raise `ValueError`, keep `"Grace"` | New rejection and preservation subtests both fail |
+| One or several spaces | Rename with `" "` or `"   "`; raise `ValueError`, keep `"Grace"` | Both assertions fail for each input |
+| Tab or newline | Rename with `"\t"` or `"\n"`; raise `ValueError`, keep `"Grace"` | Both assertions fail for each input |
+| Mixed whitespace | Rename with `" \t\r\n "`; raise `ValueError`, keep `"Grace"` | Both assertions fail |
+| Valid name with surrounding spaces | Rename to `"  Grace Hopper  "`; return and store input exactly | New test passes |
+
+## Defect and attribution
+
+`app/profile.py:5-7` accepts every tested blank input without raising and replaces
+the prior stored name with that input. Runtime evidence includes
+`AssertionError: ValueError not raised` and `AssertionError: '' != 'Grace'` for
+the empty input, with corresponding errors for the five whitespace inputs.
+This is a pre-existing implementation defect newly exposed by tests, supported
+by inspection of unchanged production code and the README contract. The
+baseline passed because it tested only a valid name. The necessary correction
+is to reject blank inputs with `ValueError` before assigning the stored name,
+while preserving nonblank input exactly. That correction was not made because
+the user authorized tests only.
+
+## Exact verification commands and results
+
+All verification commands ran in the project directory, on its working tree
+without commits. The final tested state contains the two added test methods and
+unchanged production code.
+
+1. **PASS — baseline**, exit 0:
+   `python3 -m unittest discover -s tests -v`
+   Output: `Ran 2 tests in 0.000s`, `OK`.
+2. **FAIL — focused regression**, exit 1:
+   `python3 -m unittest tests.test_profile -v`
+   Output: `Ran 3 tests in 0.002s`, `FAILED (failures=12)`.
+   Both valid-name methods pass. The blank-name method records 12 failing
+   subtests: six inputs, each with failed rejection and stored-state assertions.
+   Failure attribution: pre-existing production defect; expected tests-only result.
+3. **FAIL — complete project regression**, exit 1:
+   `python3 -m unittest discover -s tests -v`
+   Output: `Ran 4 tests in 0.003s`, `FAILED (failures=12)`.
+   Both valid-name methods and the existing service test pass. The same 12
+   blank-name subtests fail. No unrelated baseline failures appeared.
+4. **PASS — final diff and preservation review**, exit 0:
+   `git diff --check && git diff -- tests/test_profile.py && git status --short && git diff -- app && git diff --cached`
+   Whitespace check passed. Status was exactly ` M tests/test_profile.py`.
+   The test diff contains only 16 added lines. Production and staged diffs empty.
+
+Inspection commands also completed successfully:
+
+```sh
+cat <collection>/skills/feature-hardening/SKILL.md
+pwd && ls -la && test -d .codegraph && echo CODEGRAPH_PRESENT || true
+cat <collection>/skills/feature-hardening/references/scenarios.md
+git status --short && git diff && git diff --cached && rg --files -g '!__pycache__/**' -g '!*.pyc' -g '!.git/**'
+cat README.md app/profile.py app/service.py tests/test_profile.py tests/test_service.py .gitignore && git status --porcelain=v1
+```
+
+The initial login-shell directory inspection emitted three
+`Failed to create stream fd: Operation not permitted` warnings, but returned the
+expected directory inventory and exit 0. Subsequent shell calls disabled login
+initialization, and tests ran successfully at the tooling level.
+
+## Limits
+
+Evidence covers local Python behavior and in-memory stored state only. Unicode
+whitespace, nonstring input, constructor validation, authorization, concurrency,
+and persistence are outside the selected scenario coverage; no such additional
+contract was invented. There is no real database or external boundary to test
+in this implementation. No coverage percentage was measured. No tests were
+skipped or weakened. No production fixes, dependency installs, network access,
+external actions, commits, pushes, or delegation occurred.

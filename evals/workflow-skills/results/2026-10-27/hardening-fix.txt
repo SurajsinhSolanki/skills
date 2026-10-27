@@ -1,0 +1,50 @@
+# Profile rename hardening
+
+Applied `<collection>/skills/feature-hardening/SKILL.md` and its `references/scenarios.md` offline. Work was confined to the assigned project and this report. No installs, network, external/production actions, commits, pushes, or delegation.
+
+## Contract, scope, and baseline
+
+Project: `<evaluation-root>/hardening-fix/project`.
+The README requires nonblank display names, exact preservation of valid input, `ValueError` for invalid names, and preservation of the stored name on rejection. The feature is `Profile.rename` in `app/profile.py`: caller input -> validation -> in-memory assignment -> returned name. There is no request/UI, authorization boundary, persistence backend, callback, or external service in this implementation. Inspected all application and test files and relevant callers. No `.codegraph/` directory exists, so CodeGraph was not applicable.
+
+Initial Git status, unstaged diff, and staged diff were empty. The baseline full suite passed 2 tests. Baseline coverage only checked a successful rename return value and the unrelated `double` function.
+
+## Changes and evidence
+
+- `app/profile.py`: reject non-string and blank/whitespace-only inputs with `ValueError` before assigning `self.name`; return and store valid strings unchanged. The type guard gives invalid name types the documented error rather than allowing invalid state or accidental `AttributeError`.
+- `tests/test_profile.py`: strengthen the existing successful rename test to inspect stored state; add four test methods covering exact text preservation, blank rejection, invalid-type rejection, and successive failed/successful operations.
+
+The new tests ran against the original production implementation first: 5 test methods ran, with 13 failed subcases, all because `ValueError` was not raised. This demonstrates a pre-existing implementation defect, not a test-environment failure. After the two-line validation fix, the same focused tests passed. Full regression checks passed 6 test methods; these counts do not count subcases separately.
+
+| Contract/risk | Starting state/input and action | Expected observable outcome | Level/status |
+| --- | --- | --- | --- |
+| Ordinary success | Default profile, rename to `Grace` | Returned and stored name both `Grace` | Existing test strengthened; PASS |
+| Preserve valid input exactly | Fresh default profile for each of `G`, padded `Grace Hopper`, `Zoë 李`, and `Ada\tLovelace`; rename | Return value and stored name equal the original input, including whitespace and Unicode | New unit test; PASS |
+| Blank rejection without mutation | Profile named `Original`; rename to empty, space, tabs/newlines, or Unicode whitespace | `ValueError`; stored name stays `Original` | New unit test; PASS |
+| Invalid-type rejection without mutation | Profile named `Original`; rename to `None`, integer, Boolean, list, dict, or bytes | `ValueError`; stored name stays `Original` | New unit test; PASS |
+| Latest state survives repeated rejection and remains usable | Rename `Ada` to `Grace`; reject empty, whitespace, and `None`; then rename to `Katherine` | Each rejection retains `Grace`; final return/state are `Katherine` | New unit test; PASS |
+| Unrelated regression | `double(3)` | Returns `6` | Reused service test; PASS |
+
+After focused tests, inspected failure handling: validation precedes the only state write, exceptions propagate explicitly, and no logging, resources, transactions, retries, async lifecycle, or partial external writes exist here. The tests assert public return/error/state behavior without replacing the business logic or using mocks.
+
+## Exact commands and results
+
+All shell commands below ran with working directory `<evaluation-root>/hardening-fix/project`; commands are listed in execution order. File edits used `apply_patch` (tests first, production second, then this report).
+
+1. `cat <collection>/skills/feature-hardening/SKILL.md` — PASS, exit 0; read the applied skill.
+2. `pwd && ls -la && git status --short` — PASS, exit 0; confirmed assigned project, no `.codegraph/`, clean initial status.
+3. `cat <collection>/skills/feature-hardening/references/scenarios.md` — PASS, exit 0; read scenario guidance.
+4. `rg --files -g '!__pycache__/**' -g '!*.pyc' -g '! .git/**' && cat README.md && git diff && git diff --cached` — PASS, exit 0; listed project files, read contract, both initial diffs empty. The literal third glob included a space; no reliance was placed on it to exclude Git metadata (rg's default hidden-file behavior applied).
+5. `cat app/profile.py app/service.py app/__init__.py tests/test_profile.py tests/test_service.py tests/__init__.py && python3 -m unittest discover -s tests -v` — PASS, exit 0; inspected feature/test code and ran baseline: 2 tests, OK.
+6. `rg -n 'Profile|rename|name' app tests README.md && cat .gitignore` — PASS, exit 0; confirmed relevant callers/contract and ignored Python cache files.
+7. `python3 -m unittest tests.test_profile -v` — FAIL, exit 1; after adding regression tests but before fixing production: 5 test methods, 13 failing subcases (`ValueError not raised`). Attribution: pre-existing feature defect exposed by new tests.
+8. `python3 -m unittest tests.test_profile -v && python3 -m unittest discover -s tests -v && git diff --check && git diff && git status --short` — PASS, exit 0; final focused suite 5 tests OK, full suite 6 tests OK, whitespace check clean. Reviewed complete diff: only `app/profile.py` and `tests/test_profile.py` modified, no staged changes or unrelated work affected.
+9. `git diff --check && git status --short && cat <evaluation-root>/hardening-fix/report.md` — PASS, exit 0; final whitespace check clean, only the same two project files modified, report read back successfully. This command was then recorded in the report; no project changes followed the tested state.
+
+Shell invocations printed `Failed to create stream fd: Operation not permitted` three times before command output. Commands still executed, and Python/Git outputs and exit codes were available; no check was blocked by those environment warnings.
+
+## Verification scope and limits
+
+Tested the final uncommitted working tree containing the two changed project files. Final diff inspection confirmed only the intended validation and tests. No tests were skipped or assertions weakened.
+
+Runtime evidence covers this in-memory method with local synthetic inputs. Constructor validation and direct writes to the public `name` attribute are outside the requested rename scope and were unchanged; callers can still bypass rename via those interfaces. Authentication/tenancy, database rollback, concurrency coordination, external-service failures, and retries are not applicable to the present synchronous in-memory implementation. No maximum name length or normalization policy is documented, so none was invented; valid input remains exact. No coverage percentage or exhaustive-hardening claim is made.

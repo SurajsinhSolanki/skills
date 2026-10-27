@@ -1,0 +1,17 @@
+[
+  {"skill":"production-cleanup","kind":"positive","prompt":"Remove confirmed retired demo artifacts while preserving runtime behavior.","acceptable":["production-cleanup"]},
+  {"skill":"production-cleanup","kind":"negative","prompt":"Review this PR without changing code.","acceptable":["pr-review"]},
+  {"skill":"production-cleanup","kind":"overlap","prompt":"Audit unused dependencies and recommend safe removals, but do not edit files.","acceptable":["production-cleanup"]},
+  {"skill":"codebase-diagrams","kind":"positive","prompt":"Document this API's current request flow with a Mermaid sequence diagram.","acceptable":["codebase-diagrams"]},
+  {"skill":"codebase-diagrams","kind":"negative","prompt":"Create an interactive visual mockup for our new checkout screen.","acceptable":["design-psychology-rules","none"]},
+  {"skill":"codebase-diagrams","kind":"overlap","prompt":"Explain the existing payment job architecture visually, without proposing implementation tasks.","acceptable":["codebase-diagrams"]},
+  {"skill":"implementation-planning","kind":"positive","prompt":"Plan how to add export filters, using the existing roadmap. Do not implement.","acceptable":["implementation-planning"]},
+  {"skill":"implementation-planning","kind":"negative","prompt":"Implement the ready task EXP-4 in our roadmap.","acceptable":["execute-plan"]},
+  {"skill":"implementation-planning","kind":"overlap","prompt":"Assess the current export flow and give an inline implementation plan, without saved files.","acceptable":["implementation-planning"]},
+  {"skill":"feature-hardening","kind":"positive","prompt":"Harden profile updates against invalid inputs and write regression tests for narrow fixes.","acceptable":["feature-hardening"]},
+  {"skill":"feature-hardening","kind":"negative","prompt":"Rename this local variable for clarity.","acceptable":["none"]},
+  {"skill":"feature-hardening","kind":"overlap","prompt":"Add tests only for profile validation; report implementation defects without fixing them.","acceptable":["feature-hardening"]},
+  {"skill":"execute-plan","kind":"positive","prompt":"Take the next ready roadmap task, implement it, and verify its criteria.","acceptable":["execute-plan"]},
+  {"skill":"execute-plan","kind":"negative","prompt":"Update our roadmap to include PDF export; planning only.","acceptable":["implementation-planning"]},
+  {"skill":"execute-plan","kind":"overlap","prompt":"Execute the selected robustness task TEST-7 from our plan, including its tests and status update.","acceptable":["execute-plan"]}
+]

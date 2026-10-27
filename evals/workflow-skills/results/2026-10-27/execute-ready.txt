@@ -1,0 +1,55 @@
+# UX-9 execution report
+
+Implemented UX-9 and updated its existing roadmap status from Ready to Done. Only `app/profile.py`, `tests/test_profile.py`, and `roadmap.md` were changed in the project. The implementation validates `name.strip()` before assignment, raising ValueError for blank names while storing and returning valid input exactly. The stale `app/old_profile.py` roadmap hint was corrected to `app/profile.py`. UX-7 and UX-10 remain untouched; UX-10 is the next ready recommendation and was not started.
+
+## Acceptance and evidence
+
+| Criterion | Outcome | Evidence |
+| --- | --- | --- |
+| Reject empty names with ValueError | PASS | Empty string, ordinary space, tab/newline, Unicode em-space tested |
+| Preserve old state on rejection | PASS | Every invalid-name subtest asserts the original stored name |
+| Preserve valid input | PASS | Existing Grace case plus padded Grace, tab/newline-padded Ada, and Zoë; exact stored and returned values checked |
+| Relevant regression checks | PASS | Full suite: 4 tests; focused suite: 3 tests |
+| Preserve existing user work | PASS | README.md, user-staged.txt, user-untracked.txt hashes unchanged; staged diff hash unchanged |
+
+## Exact shell commands and results
+
+All commands used working directory `<evaluation-root>/execute-ready/project`. Commands 2 onward used `login: false`. Semicolons below separate the exact commands in each tool invocation.
+
+1. `cat <collection>/skills/execute-plan/SKILL.md`
+   - Exit 0; read execute-plan instructions. Shell startup emitted `Failed to create stream fd: Operation not permitted` three times; skill contents were returned completely. Subsequent non-login calls had no such warnings.
+
+2. `pwd; git status --short; test -d .codegraph && echo CODEGRAPH_PRESENT; rg --files -g 'AGENTS.md' -g '*roadmap*' -g '*plan*' -g 'package.json' -g 'README*' -g '!node_modules' -g '!vendor'`
+   - Exit 0; confirmed project directory, discovered README.md and roadmap.md. No `.codegraph/` directory. Initial status: ` M README.md`, `A  user-staged.txt`, `?? user-untracked.txt`.
+
+3. `rg --files --hidden -g '!.git/**'; cat roadmap.md; cat README.md; git diff -- README.md; git diff --cached; git status --porcelain=v1; ls -la`
+   - Exit 0; inspected project inventory, task/dependency/acceptance, documented local check, and existing user changes. UX-7 was Done; UX-9 Ready; no additional project instructions found. README had the existing user draft; the staged file was an existing user addition.
+
+4. `cat <collection>/skills/execute-plan/references/implementation-boundaries.md; cat app/profile.py app/service.py tests/test_profile.py tests/test_service.py .gitignore; sha256sum README.md user-staged.txt user-untracked.txt; git diff --cached | sha256sum; python3 -m unittest discover -s tests -v`
+   - Exit 0; read relevant source/tests and completion guidance. Baseline full suite PASS: 2 tests. Recorded preservation hashes below.
+
+5. After adding regression tests: `python3 -m unittest tests.test_profile -v`
+   - Exit 1; FAIL, expected before implementation: 3 test methods ran, with 4 invalid-name subtest failures because ValueError was not raised. Both valid-name test methods passed. This exposed the requested missing behavior, not an unrelated baseline failure.
+
+6. After implementing validation: `python3 -m unittest tests.test_profile -v; python3 -m unittest discover -s tests -v; git diff --check`
+   - Exit 0; focused suite PASS (3 tests), full suite PASS (4 tests), whitespace check PASS (no output).
+
+7. After updating roadmap: `git diff --check; git diff -- app/profile.py tests/test_profile.py roadmap.md README.md; git status --short; sha256sum README.md user-staged.txt user-untracked.txt; git diff --cached | sha256sum`
+   - Exit 0; whitespace check PASS. Inspected final diff: validation, regression tests, UX-9 status/evidence/path correction only, plus unchanged pre-existing README draft. Final status: ` M README.md`, ` M app/profile.py`, ` M roadmap.md`, ` M tests/test_profile.py`, `A  user-staged.txt`, `?? user-untracked.txt`. All preservation hashes match baseline.
+
+Edits used `apply_patch`: (1) add two regression test methods, (2) add pre-assignment blank validation, (3) update UX-9 roadmap status/path/evidence, (4) write this report. Every patch tool returned success.
+
+## User-work preservation hashes
+
+Both initial and final SHA-256 values:
+
+```text
+cb6e58d6f116885dfd63c249e40a8effb8bb4dd54aa236d48a5aea4427d6901f  README.md
+0ba4303286d69a2f95e584d8d7f960b59b38b8cad770aa174b8bfa824dd09c10  user-staged.txt
+913ae0a366e1d66036e1f6224c5307f9fd4651ed9f7770fba8c1502b5fa1998d  user-untracked.txt
+7944d37566fb83f0d3d77be988ef5ae407945599821add878e495e4d6731f973  git diff --cached
+```
+
+## Limits
+
+Verification applies to the current working tree, including preserved user work, and not to a commit. No required checks remain blocked. No runtime deployment, human QA, or external integration gate was specified. Non-string inputs and constructor validation were not specified by UX-9 and were not expanded into scope. No network, installations, external/production actions, staging, commits, pushes, or delegation occurred. No parent/sibling evaluation files or other skills were inspected. Python test execution may generate ignored `__pycache__` files inside the project.

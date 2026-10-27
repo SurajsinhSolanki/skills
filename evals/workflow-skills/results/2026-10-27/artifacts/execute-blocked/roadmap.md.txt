@@ -1,0 +1,20 @@
+# Delivery roadmap
+
+## SEC-1 — Confirm new identity-provider contract
+Status: Blocked
+Waiting for security owner; required schema and tenant rules are undecided.
+
+## SEC-2 — Replace session authentication
+Status: Blocked
+Depends on: SEC-1
+Acceptance: follow the approved identity contract.
+Blocker: SEC-1 is blocked awaiting the security owner's schema and tenant rules;
+the approved identity contract required for implementation is unavailable.
+Verification (2026-10-27): inspected the roadmap and current app/tests; no approved
+identity contract or authentication implementation is present. Existing local
+checks passed: `python3 -m unittest discover -s tests -v` (2 tests). These tests
+cover profile renaming and doubling only; SEC-2 acceptance remains unverified.
+
+## UX-1 — Rename a label
+Status: Ready
+Depends on: None

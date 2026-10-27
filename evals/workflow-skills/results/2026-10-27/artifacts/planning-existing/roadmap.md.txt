@@ -1,0 +1,37 @@
+# Delivery roadmap
+
+Owner note: preserve ordering.
+
+## UX-7 — Profile storage
+Status: Done
+Verified: existing storage checks.
+
+## UX-9 — Validate profile names
+Status: Ready
+Depends on: UX-7
+Current evidence: README.md requires nonblank display names and exact preservation
+of valid input. app/profile.py::Profile.rename currently assigns every supplied
+name without validation; tests/test_profile.py::ProfileTest.test_valid_name only
+covers a valid name.
+Implementation hint: extend app/profile.py::Profile.rename before assigning name.
+Scope: string display names passed to rename; constructor behavior and other
+profile features are outside this task.
+Implementation order:
+1. Extend tests/test_profile.py to cover empty and whitespace-only rejection,
+   unchanged state on rejection, and exact preservation of valid names.
+2. Reject names whose strip() result is empty with ValueError before assignment.
+   Use strip() only to detect blank input; store and return valid input exactly.
+3. Run python3 -m unittest discover -s tests -v, including the profile regression
+   cases, before considering this task complete.
+Acceptance:
+- Empty strings and whitespace-only strings (spaces, tabs, newlines, mixed
+  whitespace, and Unicode whitespace such as a nonbreaking space) raise ValueError.
+- Rejection leaves the previously stored name unchanged.
+- Valid names, including names containing internal or surrounding whitespace,
+  are stored and returned exactly as supplied.
+Verification: focused cases in tests/test_profile.py plus the full local unittest
+suite above. Planning does not establish implementation or acceptance completion.
+
+## UX-10 — Add avatars
+Status: Ready
+Depends on: UX-9

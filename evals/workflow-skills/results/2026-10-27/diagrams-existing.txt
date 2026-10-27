@@ -1,0 +1,197 @@
+# Existing architecture update report
+
+Completed the requested documentation update in `project/docs/architecture.md`.
+Preserved `Owner note: keep the incident timeline.` verbatim. Only that tracked
+document changed; pre-existing `user-untracked.txt` remains untracked and was
+not opened or modified. No application changes, new tests, network activity,
+installation, deployment, commits, pushes, or delegation were performed.
+
+## Evidence and result
+
+- Baseline commit: `6bd9b98 Fixture baseline`. Initial status was only
+  `?? user-untracked.txt`; initial `git diff` was empty.
+- `app/api.py::submit`, lines 1–5, checks `payload.get("name")`, returns
+  `(400, {"error": "missing name"})` for falsey names, otherwise appends the
+  unchanged name and then returns `(201, {"created": True})`.
+- README identifies the supplied store as an in-memory list. Source accepts an
+  append-compatible supplied store; neither persistence nor deployment was inferred.
+- `app/route_labels.py::ROUTE` is an unconnected constant. No framework route or
+  actual HTTP caller is established by these files.
+- `compose.yaml` is proposed configuration according to README, not observed
+  deployment state. `app/service.py::double` is unrelated to the request path.
+- Replaced the stale two-node diagram with one basic Mermaid flowchart showing
+  caller boundary, handler, truthiness decision, 400 return, append, and 201 return.
+  Added explanation, four relative evidence links, workspace context, and limits.
+
+## Exact discovery commands
+
+All shell commands ran in
+`<evaluation-root>/diagrams-existing/project`.
+All returned exit code 0. The shell runner emitted
+`Failed to create stream fd: Operation not permitted` three times per invocation;
+the commands nevertheless completed with the results recorded below.
+
+```sh
+cat <collection>/skills/codebase-diagrams/SKILL.md
+```
+
+Result: read the complete requested skill; followed its documentation-only,
+preservation, evidence, and separate syntax/render verification instructions.
+
+```sh
+pwd && ls -la
+```
+
+Result: confirmed scoped project directory; entries were `.git`, `.gitignore`,
+`README.md`, `app`, `compose.yaml`, `docs`, `tests`, and `user-untracked.txt`.
+There was no `.codegraph` directory, so CodeGraph was not used.
+
+```sh
+cat <collection>/skills/codebase-diagrams/references/diagram-guide.md
+```
+
+Result: read the complete bundled guide; selected a basic request-flow flowchart.
+
+```sh
+git status --short && git diff && rg --files --hidden -g '!.git/**' -g '!app/__pycache__/**' -g '!tests/__pycache__/**'
+```
+
+Result:
+
+```text
+?? user-untracked.txt
+compose.yaml
+.gitignore
+README.md
+app/__init__.py
+app/service.py
+app/api.py
+app/route_labels.py
+user-untracked.txt
+docs/architecture.md
+tests/__init__.py
+tests/test_service.py
+```
+
+```sh
+cat README.md docs/architecture.md app/api.py app/service.py app/route_labels.py tests/test_service.py compose.yaml .gitignore && git log -1 --format='%h %s' && command -v mmdc mermaid node python3
+```
+
+Result: inspected all relevant source/configuration and existing document. The
+existing document contained only its title, preserved owner note, submit heading,
+and a Mermaid edge from Client to Old handler. Source evidence is summarized
+above. Tool discovery returned:
+
+```text
+6bd9b98 Fixture baseline
+<user-home>/.nvm/versions/node/v24.16.0/bin/node
+/usr/bin/python3
+```
+
+Neither `mmdc` nor `mermaid` executable was found.
+
+```sh
+nl -ba app/api.py && nl -ba app/route_labels.py && nl -ba README.md && nl -ba docs/architecture.md
+```
+
+Result: confirmed handler evidence at lines 1–5; route constant at line 1; README
+entry/store context at line 5 and deployment limit at line 6; preserved owner
+note at architecture line 3.
+
+## Exact validation commands and results
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+Exit 0:
+
+```text
+test_double (test_service.ServiceTest.test_double) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+```
+
+This existing test covers `double`, not `submit` or Mermaid.
+
+```sh
+node --version && node -e 'for (const name of ["mermaid", "@mermaid-js/mermaid-cli"]) { try { console.log(name + ": " + require.resolve(name)); } catch (err) { console.log(name + ": unavailable (" + err.code + ")"); } }'
+```
+
+Exit 0:
+
+```text
+v24.16.0
+mermaid: unavailable (MODULE_NOT_FOUND)
+@mermaid-js/mermaid-cli: unavailable (MODULE_NOT_FOUND)
+```
+
+```sh
+python3 - <<'PY'
+from pathlib import Path
+import re
+from app.api import submit
+
+store = []
+assert submit({}, store) == (400, {"error": "missing name"})
+assert store == []
+assert submit({"name": "Ada"}, store) == (201, {"created": True})
+assert store == ["Ada"]
+assert submit({"name": ""}, store) == (400, {"error": "missing name"})
+assert store == ["Ada"]
+assert submit({"name": " "}, store) == (201, {"created": True})
+assert store == ["Ada", " "]
+print("Source behavior checks: missing/falsey names, unchanged rejection store, append-before-success, whitespace accepted: PASS")
+
+text = Path('docs/architecture.md').read_text()
+assert 'Owner note: keep the incident timeline.' in text
+links = re.findall(r'\]\(([^)]+)\)', text)
+for target in links:
+    assert (Path('docs') / target).is_file(), target
+assert text.count('```mermaid') == 1
+assert text.count('```') == 2
+assert 'Old handler' not in text
+print(f"Documentation checks: owner note preserved; {len(links)} local links exist; one fenced Mermaid diagram; stale label removed: PASS")
+PY
+```
+
+Exit 0:
+
+```text
+Source behavior checks: missing/falsey names, unchanged rejection store, append-before-success, whitespace accepted: PASS
+Documentation checks: owner note preserved; 4 local links exist; one fenced Mermaid diagram; stale label removed: PASS
+```
+
+```sh
+git diff --check && git diff -- docs/architecture.md && git status --short
+```
+
+Exit 0. Whitespace check produced no errors. Inspected the full final diff:
+the owner note and headings were preserved, the stale edge was replaced, and
+only relevant explanation/evidence/limits were added. Final status:
+
+```text
+ M docs/architecture.md
+?? user-untracked.txt
+```
+
+## Verification limits
+
+Source accuracy: manually traced every diagram edge/condition against
+`submit`; focused runtime assertions confirmed the documented normal branches.
+Relative links and preservation checks passed. Final diff was reviewed for
+unrelated edits and sensitive values; none were added.
+
+Syntax parser: NOT RUN. No existing Mermaid executable or project-resolvable
+Mermaid package was available. Manually examined the basic flowchart declaration,
+quoted labels, opaque IDs, decision shape, branch edges, and balanced Markdown
+fences. These checks are not a Mermaid parser pass.
+
+Rendering/readability: NOT RUN. No renderer or authorized destination preview
+was available. Diagram source is small and readable, but clipping, crossings,
+actual rendered labels, and destination compatibility were not verified.
+Destination Mermaid version is unknown. No deployment or production behavior
+was verified.

@@ -1,0 +1,131 @@
+# Inline planning execution
+
+Request: “Give me a brief inline plan to reject blank display names. Do not save files or implement it.” The evaluation separately authorizes this report as the only write.
+
+## Inline plan
+
+The README requires nonblank display names, exact preservation of valid input, `ValueError` for invalid names, and preservation of the stored name after a rejected rename. `Profile` currently assigns input directly in both initialization and `rename`; the existing profile test only covers a valid rename.
+
+1. Validate display names before assigning them in `Profile.__init__` and `Profile.rename`: reject empty or whitespace-only strings with `ValueError`. Use stripping only to detect blank input; store and return valid names exactly as supplied.
+2. Extend `tests/test_profile.py` to cover empty strings, spaces, tabs/newlines, preservation of the previous name on rejected renames, and exact preservation of valid names including surrounding spaces. Cover initialization and rename.
+3. Run `python3 -m unittest discover -s tests -v`; accept when the new cases and existing tests pass.
+
+Assumption: “blank” includes whitespace-only strings; this plan does not broaden the requirement to other input types.
+
+## Evidence and limits
+
+- Read `<collection>/skills/implementation-planning/SKILL.md` and followed its inline-only planning workflow.
+- Inspected only the assigned project and that skill. No `.codegraph/` directory exists, so CodeGraph was skipped as instructed.
+- Project files: `README.md`, `app/profile.py`, `app/service.py`, `app/__init__.py`, `tests/test_profile.py`, `tests/test_service.py`, and `tests/__init__.py`.
+- `README.md` supplies the contract; `app/profile.py` shows unvalidated assignments; `tests/test_profile.py` has only `test_valid_name`. No existing planning documents appeared in the file inventory.
+- `git status --short` returned no changes. No application files, tests, dependencies, or planning documents were written. This report is the only write.
+- Tests were not executed; this is a proposed plan, not verified implementation. No network, installations, external actions, commits, pushes, or delegation occurred.
+
+## Exact command/result log
+
+All shell commands used working directory `<evaluation-root>/planning-inline/project` and exited 0. The first two used the default login shell; later commands used `login=false`.
+
+1. Command:
+   ```sh
+   cat <collection>/skills/implementation-planning/SKILL.md
+   ```
+   Result: printed the complete skill (heading `# Implementation planning`, through its Maintenance sources paragraph). Its operative rules include “Plan only,” “Keep the plan inline unless the user requests saved planning artifacts or roadmap maintenance,” repository-grounded current-state claims, and observable acceptance criteria. The shell also emitted `Failed to create stream fd: Operation not permitted` three times; the file was successfully read. No referenced resource was needed for this small validation plan.
+
+2. Command:
+   ```sh
+   pwd && test -d .codegraph && printf 'CodeGraph present\n' || test ! -d .codegraph && printf 'CodeGraph absent\n'
+   ```
+   Result:
+   ```text
+   Failed to create stream fd: Operation not permitted
+   Failed to create stream fd: Operation not permitted
+   Failed to create stream fd: Operation not permitted
+   <evaluation-root>/planning-inline/project
+   CodeGraph absent
+   ```
+
+3. Command:
+   ```sh
+   rg --files -g '!node_modules' -g '!vendor' -g '!package-lock.json' -g '!yarn.lock' -g '!pnpm-lock.yaml' -g '!\.git/**'
+   ```
+   Result:
+   ```text
+   README.md
+   app/__init__.py
+   app/service.py
+   app/profile.py
+   tests/__init__.py
+   tests/test_service.py
+   tests/test_profile.py
+   ```
+
+4. Command:
+   ```sh
+   cat README.md app/profile.py app/service.py tests/test_profile.py tests/test_service.py
+   ```
+   Result:
+   ```text
+   # Example project
+
+   Local checks: `python3 -m unittest discover -s tests -v`.
+
+   Profile contract: display names must be nonblank; preserve valid input exactly.
+   Use ValueError for invalid names and keep the stored name on rejection.
+   class Profile:
+       def __init__(self, name="Ada"):
+           self.name = name
+
+       def rename(self, name):
+           self.name = name
+           return self.name
+   def double(value):
+       return value * 2
+   import unittest
+   from app.profile import Profile
+   class ProfileTest(unittest.TestCase):
+       def test_valid_name(self):
+           p = Profile()
+           self.assertEqual(p.rename("Grace"), "Grace")
+   import unittest
+   from app.service import double
+
+   class ServiceTest(unittest.TestCase):
+       def test_double(self):
+           self.assertEqual(double(3), 6)
+   ```
+
+5. Command:
+   ```sh
+   ls -la
+   ```
+   Result:
+   ```text
+   total 8
+   drwxrwxr-x 5 surajsinh surajsinh 140 Oct 27 12:13 .
+   drwxrwxr-x 3 surajsinh surajsinh  80 Oct 27 12:13 ..
+   drwxrwxr-x 7 surajsinh surajsinh 240 Oct 27 12:13 .git
+   -rw-rw-r-- 1 surajsinh surajsinh  19 Oct 27 12:13 .gitignore
+   -rw-rw-r-- 1 surajsinh surajsinh 230 Oct 27 12:13 README.md
+   drwxrwxr-x 3 surajsinh surajsinh 120 Oct 27 12:13 app
+   drwxrwxr-x 3 surajsinh surajsinh 120 Oct 27 12:13 tests
+   ```
+
+6. Command:
+   ```sh
+   git status --short
+   ```
+   Result: empty output (clean project working tree).
+
+7. Command:
+   ```sh
+   nl -ba README.md app/profile.py tests/test_profile.py
+   ```
+   Result: the same three files printed with continuous numbering: README lines 1–6, Profile lines 7–13, and its test lines 14–19. These are concatenated output numbers, not per-file source references.
+
+8. Tool action: `apply_patch` created this report at `<evaluation-root>/planning-inline/report.md`; it is the only permitted write. No project edit was requested or made.
+
+9. Command: `git status --short`. Result: empty output, exit 0; the project remains clean after report creation.
+
+10. Command: `wc -l <evaluation-root>/planning-inline/report.md`. Result: `125 <evaluation-root>/planning-inline/report.md`, exit 0, before adding these final log entries.
+
+11. Tool action: `apply_patch` appended these final verification results to this report; result successful. Both report patch calls returned `{}` without an error.

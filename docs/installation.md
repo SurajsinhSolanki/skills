@@ -23,6 +23,14 @@ npx skills add SurajsinhSolanki/skills --skill pr-review
 npx skills add SurajsinhSolanki/skills --skill design-psychology-rules
 # Select both skills
 npx skills add SurajsinhSolanki/skills --skill pr-review --skill design-psychology-rules
+# Select any workflow skill individually
+npx skills add SurajsinhSolanki/skills --skill production-cleanup
+npx skills add SurajsinhSolanki/skills --skill codebase-diagrams
+npx skills add SurajsinhSolanki/skills --skill implementation-planning
+npx skills add SurajsinhSolanki/skills --skill feature-hardening
+npx skills add SurajsinhSolanki/skills --skill execute-plan
+# Combine planning and execution; they still activate independently
+npx skills add SurajsinhSolanki/skills --skill implementation-planning --skill execute-plan
 # Discover without installing
 npx skills add SurajsinhSolanki/skills --list
 # Select every skill; quote the wildcard to prevent shell expansion
@@ -48,6 +56,7 @@ with your checkout. A local source is also useful for testing unpublished change
 npx skills add /path/to/agent-skills --list
 npx skills add /path/to/agent-skills --skill pr-review --agent codex --yes --copy
 npx skills add /path/to/agent-skills --skill design-psychology-rules --agent codex --yes --copy
+npx skills add /path/to/agent-skills --skill implementation-planning --skill execute-plan --agent codex --yes --copy
 ```
 
 All framework, workflow, style, policy, and report references are bundled inside
@@ -60,6 +69,14 @@ needed for the review workflow.
 license. The listed usability and accessibility checks can be applied offline;
 official source links are optional maintenance references. A static artifact
 cannot verify runtime behavior, and the skill must disclose that limit.
+
+The five workflow skills also bundle their required guidance, examples, licenses
+and notices. They do not require another skill, network lookup or installed
+connector. Applying the instructions is offline-capable; executing a project's
+own tests/builds or checking Mermaid syntax/rendering requires that project's
+available tools. Missing tools are reported rather than installed automatically.
+Planning defaults to inline output; existing roadmap formats take precedence
+over its new-roadmap fallback. See [usage and selection](../README.md#use).
 
 ## Troubleshooting
 

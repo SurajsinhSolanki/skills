@@ -28,3 +28,5 @@ jobs:
         run: python -m unittest discover -s skills/pr-review/evals -p 'test_*.py' -v
       - name: Build and verify review fixtures
         run: python skills/pr-review/evals/run.py
+      - name: Build and verify workflow fixtures (no model calls)
+        run: python evals/workflow-skills/run.py

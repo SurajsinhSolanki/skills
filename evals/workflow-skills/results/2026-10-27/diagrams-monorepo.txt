@@ -1,0 +1,193 @@
+# Catalog diagram execution report
+
+Created `project/docs/catalog/README.md` with one Mermaid flowchart documenting
+`services/catalog/handler.py::list_products`, explanatory prose, relative evidence
+links, and explicit integration/verification limits. No application source was
+changed. Initial tracked/untracked Git status was clean. Final nonignored new
+file: `docs/catalog/README.md`; tracked diff is empty. Existing work was preserved.
+
+## Evidence and scope
+
+- `services/catalog/handler.py`, lines 1–2: `def list_products():` immediately
+  returns `[{"id": 1}]`. This supports the function call, value, and lack of
+  internal branches or downstream calls shown in the diagram.
+- `services/catalog/README.md`, line 1: describes that function and no external
+  calls.
+- Scoped source reference search found only those two catalog references in
+  `services/catalog`, `app`, and `tests`. No HTTP route, transport, serialization,
+  middleware order, status codes, or caller is established. The diagram's caller
+  is an abstract boundary. No runtime deployment verification was attempted.
+- `.codegraph/` was absent, so CodeGraph was not used.
+- No network, installation, external action, commit, push, or delegation occurred.
+  No service configuration secrets were read or copied. No other skill or
+  evaluation material was inspected.
+
+## Exact inspection commands and results
+
+All shell commands ran in
+`<evaluation-root>/diagrams-monorepo/project`.
+The first two invocations used the default login shell and emitted
+`Failed to create stream fd: Operation not permitted` three times each, while
+successfully returning the requested contents. Subsequent invocations used
+`login: false`.
+
+```sh
+cat <collection>/skills/codebase-diagrams/SKILL.md
+```
+Result: exit 0; read the requested skill, including source/syntax/render checks.
+
+```sh
+pwd && git status --short && test -d .codegraph && echo CODEGRAPH_PRESENT || true
+```
+Result: exit 0; printed the project path only. Git status was empty;
+`.codegraph/` was absent.
+
+```sh
+cat <collection>/skills/codebase-diagrams/references/diagram-guide.md
+```
+Result: exit 0; read the skill's diagram-selection and conservative-syntax guide.
+
+```sh
+rg --files -g 'AGENTS.md' -g '!*lock*' -g '!package.json' -g '!**/node_modules/**' -g '!**/.git/**' services/catalog docs .github 2>/dev/null; command -v mmdc; command -v mermaid; command -v node; command -v python3
+```
+Result: exit 0; no file-list output; no `mmdc` or `mermaid` command found.
+Node path: `<user-home>/.nvm/versions/node/v24.16.0/bin/node`;
+Python path: `/usr/bin/python3`. The empty file-list output was not relied on:
+Git inventory and explicit listings followed.
+
+```sh
+command -v rg; ls -la; git status --porcelain=v1; git ls-files; ls -la services/catalog docs/catalog 2>/dev/null
+```
+Result: exit 2 because `docs/catalog` did not yet exist. `rg` resolves to
+`/usr/lib/chatgpt/resources/rg`. Git status was empty. Tracked inventory was
+`.gitignore`, `README.md`, `app/__init__.py`, `app/api.py`, `app/service.py`,
+`compose.yaml`, `services/catalog/README.md`, `services/catalog/config.env`,
+`services/catalog/handler.py`, `services/payments/handler.py`,
+`tests/__init__.py`, `tests/test_service.py`. Catalog contained its README,
+configuration file, and handler. Listing filenames did not read those other
+services or configuration contents.
+
+```sh
+cat README.md services/catalog/README.md; nl -ba services/catalog/handler.py; rg --hidden --no-ignore -n 'catalog|handle' app tests services/catalog -g '!*.env'; for diagram_tool in mmdc mermaid; do command -v "$diagram_tool" || true; done; node -e 'try { console.log(require.resolve("mermaid")); } catch { console.log("Mermaid package unavailable through local Node resolution"); }'
+```
+Result: exit 0. Root README supplied the unittest command and described a separate
+application entry point; no application architecture was added to catalog docs.
+Catalog README and line-numbered handler matched the evidence above. `rg`
+returned no search output, so the reference check was repeated with `git grep`.
+No Mermaid CLI was found. Node printed
+`Mermaid package unavailable through local Node resolution`.
+
+```sh
+git grep -n -E 'catalog|list_products' -- services/catalog app tests; ls -la services; for instruction_file in AGENTS.md services/AGENTS.md services/catalog/AGENTS.md docs/AGENTS.md docs/catalog/AGENTS.md; do if test -f "$instruction_file"; then cat "$instruction_file"; fi; done; python3 --version; node --version; python3 -m unittest discover -s tests -v
+```
+Result: exit 0. Search results:
+
+```text
+services/catalog/README.md:1:Catalog exposes list_products without external calls.
+services/catalog/handler.py:1:def list_products():
+```
+
+No checked instruction file existed. Versions: Python 3.14.4, Node v24.16.0.
+Tests:
+
+```text
+test_double (test_service.ServiceTest.test_double) ... ok
+
+Ran 1 test in 0.000s
+
+OK
+```
+
+The one existing test is not evidence of catalog request integration coverage.
+
+## Exact local validation commands and results
+
+After creating the documentation with a shell heredoc, executed:
+
+```sh
+python3 - <<'PY'
+import importlib.util
+from pathlib import Path
+spec = importlib.util.spec_from_file_location('catalog_handler', 'services/catalog/handler.py')
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+result = module.list_products()
+assert result == [{'id': 1}], result
+print(f'Catalog invocation: {result!r}')
+path = Path('docs/catalog/README.md')
+text = path.read_text()
+import re
+links = re.findall(r'\]\(([^)]+)\)', text)
+for link in links:
+    target = path.parent / link
+    assert target.is_file(), str(target)
+    print(f'Link OK: {link}')
+assert text.count('```mermaid') == 1
+assert text.count('```') == 2
+print('One Mermaid block with balanced Markdown fences (not a Mermaid parse).')
+PY
+ git diff --check
+ git status --short
+ git diff --no-index -- /dev/null docs/catalog/README.md
+```
+
+Result: combined exit 1 from the final `git diff --no-index` indicating the new
+file differs from `/dev/null`; the full 36-line new document was inspected.
+Validation output:
+
+```text
+Catalog invocation: [{'id': 1}]
+Link OK: ../../services/catalog/handler.py
+Link OK: ../../services/catalog/README.md
+One Mermaid block with balanced Markdown fences (not a Mermaid parse).
+?? docs/
+```
+
+`git diff --check` emitted no diagnostics. Review confirmed only catalog content,
+no secret values, and no invented routing, storage, or remote dependencies.
+
+The handler invocation created bytecode, which was removed explicitly:
+
+```sh
+python3 - <<'PY'
+from pathlib import Path
+cache = Path('services/catalog/__pycache__/handler.cpython-314.pyc')
+if cache.exists():
+    cache.unlink()
+    print(f'Removed local-check bytecode: {cache}')
+cache_dir = cache.parent
+if cache_dir.exists() and not any(cache_dir.iterdir()):
+    cache_dir.rmdir()
+print('Catalog handler source remains unchanged.')
+PY
+ git diff --check
+ git diff --exit-code
+ git ls-files --others --exclude-standard
+ git diff --no-index --check -- /dev/null docs/catalog/README.md
+```
+
+Result: combined exit 1 from the final no-index comparison; no whitespace
+check diagnostics. Output:
+
+```text
+Removed local-check bytecode: services/catalog/__pycache__/handler.cpython-314.pyc
+Catalog handler source remains unchanged.
+docs/catalog/README.md
+```
+
+`git diff --exit-code` emitted no diff. Only the requested documentation file
+was listed as a nonignored untracked file.
+
+## Verification limits
+
+- Source accuracy: checked against the complete two-line handler and catalog
+  README; direct invocation confirmed the returned value.
+- Markdown fences and local evidence links: passed the explicit checks above.
+- Mermaid parser: not run; neither local CLI nor Node-resolvable package was
+  available. Balanced Markdown fences are not Mermaid syntax validation.
+- Visual rendering/readability: not run; no diagram image was generated or
+  inspected. Source labels were manually read for clarity.
+- Destination Mermaid version/compatibility: unverified. Basic flowchart syntax
+  was used. No upload, install, or network fallback was attempted.
+- Request integration and deployment: unverified; documentation states these
+  gaps rather than claiming an HTTP workflow.

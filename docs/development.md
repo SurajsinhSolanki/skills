@@ -41,6 +41,8 @@ python scripts/update_catalog.py --check
 python -m unittest discover -s tests -v
 python -m unittest discover -s skills/pr-review/evals -p 'test_*.py' -v
 python skills/pr-review/evals/run.py
+python evals/workflow-skills/run.py
+git diff --check
 ```
 
 After metadata changes, run `python scripts/update_catalog.py` before checking.
@@ -59,6 +61,20 @@ Unit tests and fixture generation do not establish that an agent follows the
 skill. Use the package's [blind evaluation procedure](../skills/pr-review/evals/README.md)
 for that, recording the revision, model, settings, and raw results. Keep generated
 repositories and review outputs in temporary directories, outside the collection.
+
+The five workflow packages use [their own evaluation procedure](../evals/workflow-skills/README.md).
+The default builder checks 15 synthetic fixtures and their baseline behavior;
+it does not call a model. Collection tests also exercise the workflow assessor
+against deliberate wrong edits and behavior mutations. CI runs these inexpensive
+deterministic checks; independent agent runs are a separate maintainer operation.
+Preserve first failures, actual artifacts/commands and reruns. An assessor pass
+does not replace semantic assessment, Mermaid parsing/rendering, or activation
+tests. Do not reuse PR verdict scoring for implementation/planning workflows.
+
+New prompt-derived material must preserve scope while improving demonstrated
+weaknesses. Record topic coverage, source/license provenance and optional official
+maintenance sources, as in [the workflow conversion](workflow-skills-conversion.md).
+Keep normal use self-contained and avoid mandatory online documentation lookups.
 
 For a packaging smoke test, use a disposable project directory and the official
 CLI with the absolute collection path, `--skill pr-review --agent codex --yes

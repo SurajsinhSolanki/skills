@@ -1,0 +1,311 @@
+[
+  {
+    "path": "/home/surajsinh/.agents/skills/orchestration/SKILL.md",
+    "bytes": 3671,
+    "sha256": "cd1b364bf35781bad06bf75ab1766afa8d6cec69cb2060529691d89871a2098a",
+    "mtime_utc": "2026-10-23T10:22:06.880231+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.agents/skills/orca-cli/SKILL.md",
+    "bytes": 2372,
+    "sha256": "aa76f86505010096e8ea9edda1705a78aae7af45e54485f3fe0460664c1d9e4a",
+    "mtime_utc": "2026-10-23T10:22:06.875357+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.agents/skills/codebase-knowledge/SKILL.md",
+    "bytes": 9417,
+    "sha256": "d8b08bcbacb0999f42b1a0a11483b2519d35fd6396fc1c7b039861d32c527444",
+    "mtime_utc": "2026-07-01T10:59:26.021415+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.agents/skills/find-skills/SKILL.md",
+    "bytes": 5446,
+    "sha256": "1e85f6f9686e145aca4a124e3b704b9bbea9aa87e08515c1e352eee70f6e6e7a",
+    "mtime_utc": "2026-06-18T10:35:23.461106+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.agents/skills/computer-use/SKILL.md",
+    "bytes": 2211,
+    "sha256": "2839933fd35216845461466403e6061488005f6df57126d0cd0f769ea45753f3",
+    "mtime_utc": "2026-10-23T10:22:06.867355+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.agents/skills/frontend-design/SKILL.md",
+    "bytes": 8260,
+    "sha256": "1608ea77fbb6fc30d13a97d12cfa8ebf31358d40f0dd97beed24829d6b3f45dd",
+    "mtime_utc": "2026-06-24T05:00:51.411642+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/skills/.system/openai-docs/SKILL.md",
+    "bytes": 18655,
+    "sha256": "5cae604fb26d9ca3db47af72e16e9c1bffa47f9e6508b77566d2374dac75e610",
+    "mtime_utc": "2026-10-27T07:09:56.057289+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/skills/.system/skill-creator/SKILL.md",
+    "bytes": 22047,
+    "sha256": "da44c88f6b3845a8fa8c60792ec9a722110a55a9793c279757b48fefb11f819c",
+    "mtime_utc": "2026-10-27T07:09:56.057960+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/skills/.system/imagegen/SKILL.md",
+    "bytes": 24003,
+    "sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+    "mtime_utc": "2026-10-27T07:09:56.056856+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/skills/.system/plugin-creator/SKILL.md",
+    "bytes": 11040,
+    "sha256": "8fd56316b2c49cbdc657a5d197967a233018e1fada65b00a5dd030dce6499a6e",
+    "mtime_utc": "2026-10-27T07:09:56.057628+00:00",
+    "advertised": false,
+    "reviewed": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/skills/.system/skill-installer/SKILL.md",
+    "bytes": 3366,
+    "sha256": "09df0ea7921f63d51befae9fc8f71daece5ef49d7b96e35fff8b18d15d6afda7",
+    "mtime_utc": "2026-10-27T07:09:56.058306+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/sites/1.1.2/skills/sites-remix/SKILL.md",
+    "bytes": 7348,
+    "sha256": "34a249750d98e38f676fa391819593ab5c14e5f46f9137832a8c49180d47022d",
+    "mtime_utc": "2026-10-26T10:50:01.946288+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/sites/1.1.2/skills/sites/SKILL.md",
+    "bytes": 12370,
+    "sha256": "00750ea5ca37e2b49afd2a57fee2149d22ee4f48af40bc094e6d2cee3e7bd1ad",
+    "mtime_utc": "2026-10-26T10:50:01.946320+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/plugin-management/0.1.0/skills/plugin-management/SKILL.md",
+    "bytes": 2983,
+    "sha256": "653841cc21205269f08b0ce135891e1518dac616a766bcfb0b57d788d3f68b10",
+    "mtime_utc": "2026-09-11T16:57:19.425215+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-strategy-memorandum/SKILL.md",
+    "bytes": 1446,
+    "sha256": "51d7882ac94e8e57b323394825728c33925af878806e37277217c2dc12a912e5",
+    "mtime_utc": "2026-10-26T10:50:00.709163+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-business-review/SKILL.md",
+    "bytes": 1475,
+    "sha256": "27721fc1d67d1b41949caa75ac8f94f81952ff124406878af6524047929e60d2",
+    "mtime_utc": "2026-10-26T10:50:00.709897+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-tracker/SKILL.md",
+    "bytes": 1484,
+    "sha256": "d97d5be20189b7f53dd269b6e1c5f694eaf53e5a72f6559fcb1578911b7cda82",
+    "mtime_utc": "2026-10-26T10:50:00.710079+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-review/SKILL.md",
+    "bytes": 1483,
+    "sha256": "6d63c5cd025ffe936e7bab5db3023672bbaec26af55c2bb8b057d38c202c9c32",
+    "mtime_utc": "2026-10-26T10:50:00.710304+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-three-statement-forecast/SKILL.md",
+    "bytes": 1552,
+    "sha256": "74f4a5cccec0107b861548b157e04c51d9b58ec13a990c86394b4c529b8ecf41",
+    "mtime_utc": "2026-10-26T10:50:00.710480+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-financial-budget/SKILL.md",
+    "bytes": 1486,
+    "sha256": "c0b6b7a62a15597aaf2b1ec679e21da48f533b756127f0aef957cdfe9f3da738",
+    "mtime_utc": "2026-10-26T10:50:00.710625+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-legal-memorandum/SKILL.md",
+    "bytes": 1434,
+    "sha256": "51fb9d21baf6119c4ccb1903638a6bac0e859210de63460fffa7025d52e997e0",
+    "mtime_utc": "2026-10-26T10:50:00.710967+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-analytics-dashboard/SKILL.md",
+    "bytes": 1497,
+    "sha256": "cf5360fd8b197673bb237c52c603c97fa319c875c3dfa2cd8efff52d4422f513",
+    "mtime_utc": "2026-10-26T10:50:00.711169+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-sales-pipeline/SKILL.md",
+    "bytes": 1482,
+    "sha256": "15cfeeedf440021f16ed3f3ad8c7c1ef6d48898b9447741e223d2fb41cfc9800",
+    "mtime_utc": "2026-10-26T10:50:00.711309+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-design-report/SKILL.md",
+    "bytes": 1437,
+    "sha256": "563722f53854e606f8a9f87e37e72d7ef70a22d46d5836b8e4d6abfb1b79e9e0",
+    "mtime_utc": "2026-10-26T10:50:00.712271+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-minimal-letterhead/SKILL.md",
+    "bytes": 1470,
+    "sha256": "880ef094d4d0c89a7bde5ce9bbe4086625c186651e9e6efc8ba8bdd7cc77f9d5",
+    "mtime_utc": "2026-10-26T10:50:00.712422+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-team-alignment/SKILL.md",
+    "bytes": 1473,
+    "sha256": "26d7cafdcd1899a937b325c5d02ac57c162d45002153be33a934d35f81eb6110",
+    "mtime_utc": "2026-10-26T10:50:00.714601+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-dark-mode/SKILL.md",
+    "bytes": 1478,
+    "sha256": "b7c8d0c05f75878b9bc21e56a57c41ec1aa29700aca0a24822be0f9f1bd53207",
+    "mtime_utc": "2026-10-26T10:50:00.715666+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-kickoff/SKILL.md",
+    "bytes": 1463,
+    "sha256": "aa893ebd89e7c8d1db4261d01cc2b1add35d78d00785871ccaaa5fc8db783ec9",
+    "mtime_utc": "2026-10-26T10:50:00.716376+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-calendar/SKILL.md",
+    "bytes": 1500,
+    "sha256": "33bb660791a0b9a21628a42c34934932220203b6aabd84e98cb1b45327d0384c",
+    "mtime_utc": "2026-10-26T10:50:00.716556+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-light-mode/SKILL.md",
+    "bytes": 1487,
+    "sha256": "7c68430c6cf57b55b457d4735dbd1a46b889bef135a32222902dd0848b6e1752",
+    "mtime_utc": "2026-10-26T10:50:00.717116+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-system-design/SKILL.md",
+    "bytes": 1445,
+    "sha256": "87f7b7ed1b0d8410f5e5971cd7f7db9a4165e2f37069e97e52dbfb469b75a57c",
+    "mtime_utc": "2026-10-26T10:50:00.717371+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-market-trends-report/SKILL.md",
+    "bytes": 1498,
+    "sha256": "d58d019b89cb6f292ac3ab991d561489eef477ff53ce05fb024a0c936f5af26a",
+    "mtime_utc": "2026-10-26T10:50:00.718012+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-experiment-analysis/SKILL.md",
+    "bytes": 1456,
+    "sha256": "0b05effc47df0a14f8e0c3e3597e6722224747435546385d38a2cae279bd20b9",
+    "mtime_utc": "2026-10-26T10:50:00.718215+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-investment-committee-memo/SKILL.md",
+    "bytes": 1496,
+    "sha256": "68abd08cfe5e073e3c446a3f675f44c5bf98f57434dba679e8acd8a763379a8b",
+    "mtime_utc": "2026-10-26T10:50:00.718436+00:00",
+    "advertised": false
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/update-pet/SKILL.md",
+    "bytes": 4272,
+    "sha256": "c63c98d67b6ad781a72a8f9837ba1fb5e2d2a8054a2562e4025890a97d8a0e67",
+    "mtime_utc": "2026-10-05T07:45:19.766608+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/pets/SKILL.md",
+    "bytes": 3552,
+    "sha256": "1bf5d45fd6a6390aab777229293fb05cef7cf898aac882f8955e40c378e52fcd",
+    "mtime_utc": "2026-10-05T07:45:19.766694+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/create-pet/SKILL.md",
+    "bytes": 17353,
+    "sha256": "841354fb8116f8fdfd3b643b30828f5180196c594d3fed9b669b948b88892af1",
+    "mtime_utc": "2026-10-05T07:45:19.766837+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-bundled/visualize/1.0.55/skills/visualize/SKILL.md",
+    "bytes": 33359,
+    "sha256": "766f4e5ee250af9d3c68353d0b8609e40e0ce5926a625d7ca88e073525360d25",
+    "mtime_utc": "2026-10-26T10:49:46.997525+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/presentations/26.1025.11240/skills/presentations/SKILL.md",
+    "bytes": 29794,
+    "sha256": "bb3726eff35cb82241fd2c3b09fcdb18cc3bf3daefddf8df929d2e0bd4d2af2f",
+    "mtime_utc": "2026-10-26T10:50:07.347709+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/template-creator/26.1025.11240/skills/template-creator/SKILL.md",
+    "bytes": 19036,
+    "sha256": "f1d14fd2847a2e879611a8b8f872f5dc4676a0607958d015274d2dc61e812deb",
+    "mtime_utc": "2026-10-26T10:50:07.355684+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/pdf/26.1025.11240/skills/pdf/SKILL.md",
+    "bytes": 7809,
+    "sha256": "a6e20f4ae66364a06d577dd51e0ce66ee2ef955be129cbe195e0a27f403daaf8",
+    "mtime_utc": "2026-10-26T10:50:07.342530+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/documents/26.1025.11240/skills/documents/SKILL.md",
+    "bytes": 41564,
+    "sha256": "c9b9ba61ac15f20a600220bc10a380c7753992bbd3c323bfe33fae864adefc21",
+    "mtime_utc": "2026-10-26T10:50:07.331831+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/spreadsheets/SKILL.md",
+    "bytes": 65314,
+    "sha256": "25da47cec10100f2a08df9feaa252864a738816aca30562ae6ba111d7b1eb48e",
+    "mtime_utc": "2026-10-26T10:50:07.352134+00:00",
+    "advertised": true
+  },
+  {
+    "path": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/excel-live-control/SKILL.md",
+    "bytes": 71942,
+    "sha256": "1c27488fa2a59ce2cc8925a12527ee9c7aa40ccf0701f3f2719ab17858586e8b",
+    "mtime_utc": "2026-10-26T10:50:07.353274+00:00",
+    "advertised": true
+  }
+]

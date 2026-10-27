@@ -1,0 +1,213 @@
+# Saved implementation roadmap execution report
+
+Completed the requested planning work on 2026-10-27 using
+`<collection>/skills/implementation-planning/SKILL.md`.
+
+Created only these project artifacts:
+
+- `project/docs/plan/README.md`: roadmap index, scope decisions, progress, and next task.
+- `project/docs/plan/phase-1.md`: P1-T001, Ready, with implementation sequence,
+  evidence, acceptance, compatibility, and verification requirements.
+
+The next ready task is P1-T001. Implementation is not complete or attempted.
+No application code, tests, dependencies, or existing files were changed.
+
+## Commands and observed results
+
+All shell invocations used working directory
+`<evaluation-root>/planning-new/project`.
+Each shell invocation emitted the following environment diagnostic three times:
+`Failed to create stream fd: Operation not permitted`. Commands otherwise ran
+and returned the results below. No escalation was requested or needed.
+
+### 1. Read the invoked skill
+
+```sh
+cat <collection>/skills/implementation-planning/SKILL.md
+```
+
+Exit 0. Read planning-only boundaries, repository evidence requirements,
+persistence defaults, roadmap status rules, review and delivery guidance.
+
+### 2. Inspect project and initial work state
+
+```sh
+pwd
+ls -la
+if test -d .codegraph; then printf 'CODEGRAPH_PRESENT\n'; fi
+git status --short
+```
+
+Exit 0. `pwd` returned the working directory above. Entries were `.git`,
+`.gitignore`, `README.md`, `app`, and `tests`. No `CODEGRAPH_PRESENT` marker:
+there was no `.codegraph` directory, so CodeGraph was not used. Initial Git
+status was empty; no existing user changes were discovered.
+
+### 3. Read required skill resources
+
+```sh
+cat <collection>/skills/implementation-planning/references/roadmap.md
+cat <collection>/skills/implementation-planning/references/risk-and-acceptance.md
+```
+
+Exit 0. Read default saved-roadmap format, stable task IDs, status definitions,
+acceptance rules, and applicable backend/compatibility/data-integrity guidance.
+
+### 4. Locate contract, implementation, tests, and existing plans
+
+```sh
+rg --files -g '!__pycache__/**' -g '!*.pyc' -g '!.git/**' -g '!*cache*'
+cat README.md
+rg -n 'display|name|validate|profile|roadmap|plan' app tests README.md
+rg --files -g 'AGENTS.md' -g '*plan*' -g '*roadmap*' -g '!**/__pycache__/**'
+```
+
+Combined invocation exit 1 because the final search found no matching files.
+The earlier commands succeeded. File inventory:
+
+```text
+README.md
+tests/__init__.py
+tests/test_service.py
+tests/test_profile.py
+app/service.py
+app/profile.py
+app/__init__.py
+```
+
+README contract, lines 5–6: display names must be nonblank; preserve valid input
+exactly; use `ValueError` for invalid names and retain the stored name on
+rejection. No existing plan, roadmap, or project `AGENTS.md` was found in this
+inventory. Existing application/test matches led to the next reads.
+
+### 5. Read relevant sources and check existing differences
+
+```sh
+nl -ba app/profile.py
+nl -ba tests/test_profile.py
+nl -ba app/service.py
+nl -ba tests/test_service.py
+cat .gitignore
+git diff --stat
+git diff --cached --stat
+```
+
+Exit 0. `Profile.__init__` assigns `self.name = name` at line 3, with `"Ada"`
+as its default. `Profile.rename` assigns at line 6 and returns the name at
+line 7; neither validates. The single profile test checks renaming to `"Grace"`.
+The service doubles its argument; its single test checks `double(3) == 6`.
+`.gitignore` contains `__pycache__/` and `*.pyc`. Both diff-stat results were empty.
+
+### 6. Execute baseline suite and current-behavior probes
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+from app.profile import Profile
+for value in ('', ' \t\n', ' Grace '):
+    profile = Profile()
+    result = profile.rename(value)
+    print(f'rename({value!r}) -> {result!r}; stored={profile.name!r}')
+for value in ('', ' \t\n'):
+    profile = Profile(value)
+    print(f'Profile({value!r}) -> stored={profile.name!r}')
+PY
+```
+
+Exit 0. Exact check/probe output, excluding the repeated shell diagnostic:
+
+```text
+test_valid_name (test_profile.ProfileTest.test_valid_name) ... ok
+test_double (test_service.ServiceTest.test_double) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+rename('') -> ''; stored=''
+rename(' \t\n') -> ' \t\n'; stored=' \t\n'
+rename(' Grace ') -> ' Grace '; stored=' Grace '
+Profile('') -> stored=''
+Profile(' \t\n') -> stored=' \t\n'
+```
+
+### 7. Save roadmap
+
+Used the `apply_patch` tool to add only
+`project/docs/plan/README.md` and `project/docs/plan/phase-1.md` at their absolute
+paths under the assigned project. Tool succeeded, returning `{}`.
+No shell command or application mutation was used for this step.
+
+### 8. Review the complete new-document diffs
+
+```sh
+git diff --no-index -- /dev/null docs/plan/README.md
+git diff --no-index -- /dev/null docs/plan/phase-1.md
+```
+
+Combined invocation exit 1, the normal no-index result for differing files.
+The two diffs showed only new planning documents: 30 lines in the index and
+84 lines in phase 1. Reviewed evidence against inspected sources, acceptance,
+scope, task order, status, and separation of baseline from planned checks.
+
+### 9. Verify local links and preservation of existing work
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'
+from pathlib import Path
+import re
+for path in sorted(Path('docs/plan').glob('*.md')):
+    for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
+        filename, _, anchor = target.partition('#')
+        resolved = path.parent / filename if filename else path
+        assert resolved.is_file(), (path, target)
+        if anchor:
+            headings = re.findall(r'^#+ (.+)$', resolved.read_text(), re.M)
+            slugs = [re.sub(r'[^\w\- ]', '', heading.lower()).replace(' ', '-') for heading in headings]
+            assert anchor in slugs, (path, target, slugs)
+        print(f'OK {path} -> {target}')
+PY
+git diff --exit-code -- app tests README.md .gitignore
+git diff --cached --exit-code
+git status --short
+```
+
+Exit 0. Exact output, excluding the repeated shell diagnostic:
+
+```text
+OK docs/plan/README.md -> ../../README.md
+OK docs/plan/README.md -> phase-1.md
+OK docs/plan/README.md -> phase-1.md#p1-t001--reject-blank-names
+OK docs/plan/phase-1.md -> ../../README.md
+OK docs/plan/phase-1.md -> ../../app/profile.py
+OK docs/plan/phase-1.md -> ../../app/profile.py
+OK docs/plan/phase-1.md -> ../../tests/test_profile.py
+?? docs/
+```
+
+Both diff commands produced no changes. Seven links, including the task anchor,
+resolved successfully. Final project status contained only the new `docs/`
+directory.
+
+### 10. Save this report
+
+Used `apply_patch` to add this exact report at
+`<evaluation-root>/planning-new/report.md`.
+This is the only write outside the assigned project.
+
+## Evidence and limits
+
+The existing suite passing does not establish blank-name rejection: direct
+calls show the gap. The roadmap proposes validation in both construction and
+renaming because both assign the documented display name. This is explicitly
+recorded as a scope decision; non-string input policy and direct public-attribute
+writes are outside the task. `str.strip()` is used to define blankness only;
+valid strings must remain exact. No data migration is needed for the inspected
+in-memory class.
+
+The proposed validation and additional tests have not been implemented or run.
+No production readiness or externally observed behavior is claimed. No network,
+installs, external actions, commits, pushes, delegation, sibling-evaluation
+inspection, manifests, expected answers, other skills, or collection code were
+used. Only the assigned project and the invoked skill plus its two referenced
+resources were read; this report is the sole permitted outside-project write.

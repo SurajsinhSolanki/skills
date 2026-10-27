@@ -1,0 +1,9 @@
+class Profile:
+    def __init__(self, name="Ada"):
+        self.name = name
+
+    def rename(self, name):
+        if not name.strip():
+            raise ValueError("Profile name must be nonblank")
+        self.name = name
+        return self.name

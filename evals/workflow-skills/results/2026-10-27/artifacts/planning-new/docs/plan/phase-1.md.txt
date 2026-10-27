@@ -1,0 +1,84 @@
+# Phase 1 — Enforce the profile contract
+
+Objective: make name-setting behavior comply with the existing nonblank-name
+contract. Boundaries: `app/profile.py` and its public-behavior tests in
+`tests/test_profile.py`. No new dependencies, architecture, persistence,
+deployment, or unrelated `app/service.py` changes are needed.
+
+Prerequisites: none. The documented behavior and existing implementation provide
+enough evidence to implement the task.
+
+## P1-T001 — Reject blank names
+
+Status: Ready  
+Depends on: None
+
+### Current evidence
+
+- [README.md](../../README.md), lines 5–6, requires nonblank display names,
+  exact preservation of valid input, `ValueError` for invalid names, and unchanged
+  stored state on rejection.
+- [Profile.__init__](../../app/profile.py), lines 2–3, assigns its argument
+  directly, with default `"Ada"`.
+- [Profile.rename](../../app/profile.py), lines 5–7, assigns its argument directly
+  and returns the stored name.
+- [ProfileTest.test_valid_name](../../tests/test_profile.py), lines 4–6, only
+  checks the result of renaming to `"Grace"`.
+- Local baseline calls accepted `""` and `" \t\n"` through both entry points;
+  renaming to `" Grace "` preserved its surrounding spaces.
+
+### Proposed implementation sequence
+
+1. Extend the existing profile tests with empty-string and whitespace-only cases
+   for construction and renaming. Use representative spaces, tabs/newlines,
+   mixed whitespace, and Unicode whitespace such as `"\u2003"`. Assert
+   `ValueError` for rejection, and assert that every rejected rename leaves an
+   existing valid name unchanged. Run these tests before the fix to demonstrate
+   the missing behavior.
+2. In `Profile.__init__` and `Profile.rename`, check whether the supplied string
+   is blank before assigning `self.name`. Use `str.strip()` only for the
+   emptiness check. Follow the small existing class structure; no new service or
+   dependency is required. The error message is not a new public contract.
+3. Confirm valid construction and renaming preserve the exact supplied value,
+   including surrounding spaces, and preserve the existing rename return value.
+   Confirm default construction still yields `"Ada"`. Run focused tests and then
+   the repository's full suite; record the commands and results before marking
+   the task done.
+
+Tests and validation must land together. The steps are sequential because the
+regression cases define and verify the implementation's contract.
+
+### Observable acceptance criteria
+
+- Explicit construction with `""` or whitespace-only strings raises `ValueError`.
+- Renaming to the same blank cases raises `ValueError` and leaves `self.name`
+  equal to its previous valid value.
+- A valid value such as `" Grace "` is stored exactly as supplied by both entry
+  points; `rename` returns that unchanged value.
+- Default construction still stores `"Ada"`, and ordinary valid names work.
+- Existing service behavior remains covered by the full regression suite.
+
+### Verification and completion
+
+Planned checks, to run during implementation:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_profile -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+```
+
+The phase and task become `Done` only when all acceptance assertions are present
+and both checks pass against the implemented change. Record that evidence in
+the roadmap. Planning alone does not complete the task.
+
+### Compatibility and evidence limits
+
+Rejecting previously accepted blank strings intentionally changes behavior to
+match the README. Valid strings retain their existing representation and return
+behavior. There is no persistent data store or migration in the inspected name
+path; this task does not repair preexisting objects or prevent direct writes to
+the public `name` attribute. Non-string input policy is outside scope.
+
+During planning, only the baseline two-test suite and direct current-behavior
+calls were executed. No proposed tests, validation fix, deployment, or production
+behavior has been verified.

@@ -1,0 +1,43 @@
+import unittest
+from app.profile import Profile
+
+
+class ProfileTest(unittest.TestCase):
+    def test_valid_name(self):
+        p = Profile()
+        self.assertEqual(p.rename("Grace"), "Grace")
+        self.assertEqual(p.name, "Grace")
+
+    def test_valid_name_is_preserved_exactly(self):
+        for name in ("G", "  Grace Hopper  ", "Zoë 李", "Ada\tLovelace"):
+            with self.subTest(name=name):
+                p = Profile()
+                self.assertEqual(p.rename(name), name)
+                self.assertEqual(p.name, name)
+
+    def test_blank_name_is_rejected_without_changing_name(self):
+        for name in ("", " ", "\t\r\n", "\u00a0\u2003"):
+            with self.subTest(name=repr(name)):
+                p = Profile("Original")
+                with self.assertRaises(ValueError):
+                    p.rename(name)
+                self.assertEqual(p.name, "Original")
+
+    def test_non_string_name_is_rejected_without_changing_name(self):
+        for name in (None, 0, False, [], {}, b"Grace"):
+            with self.subTest(name=repr(name)):
+                p = Profile("Original")
+                with self.assertRaises(ValueError):
+                    p.rename(name)
+                self.assertEqual(p.name, "Original")
+
+    def test_rejection_preserves_latest_name_and_allows_later_rename(self):
+        p = Profile()
+        p.rename("Grace")
+        for name in ("", " \t", None):
+            with self.subTest(name=repr(name)):
+                with self.assertRaises(ValueError):
+                    p.rename(name)
+                self.assertEqual(p.name, "Grace")
+        self.assertEqual(p.rename("Katherine"), "Katherine")
+        self.assertEqual(p.name, "Katherine")

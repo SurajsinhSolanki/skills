@@ -5,12 +5,14 @@ The collection uses one standard skill definition per directory. The
 metadata and resource layout; the [official CLI agent table](https://github.com/vercel-labs/skills/blob/main/docs/agents.md)
 documents available install targets. Initial checks ran on 2026-10-26; local
 installation of both skills was checked on 2026-10-27 with CLI 1.7.4.
+The later workflow-skill conversion checked all seven local packages with the
+same CLI; historical remote results below apply only to their recorded revision.
 
 | Agent | Project-local parent observed with `--copy` | Evidence |
 |---|---|---|
-| Claude Code | `.claude/skills/` | Both named skill directories installed individually; all package bytes compared |
-| Codex | `.agents/skills/` | Both named skill directories installed individually; all package bytes compared |
-| Cursor | `.agents/skills/` | Both named skill directories installed individually; all package bytes compared |
+| Claude Code | `.claude/skills/` | Existing two packages previously tested; five new workflow packages individually copied and byte-compared on 2026-10-27 |
+| Codex | `.agents/skills/` | Existing two packages previously tested; five new workflow packages individually copied and byte-compared on 2026-10-27 |
+| Cursor | `.agents/skills/` | Existing two packages previously tested; five new workflow packages individually copied and byte-compared on 2026-10-27 |
 | Other CLI-supported agents | Consult the CLI's agent table | Documented installer support; not tested here |
 
 The published GitHub source was also tested with CLI 1.7.4: discovery found
@@ -48,3 +50,24 @@ and collection tooling. Review users do not need Python merely to read the
 skill; its evaluation scripts are development tools. Some example tests skip
 when optional project runtimes or libraries are absent. See the
 [verification report](verification.md) for exact outcomes.
+
+## Workflow packages — 2026-10-27
+
+The local source now contains seven independently installable packages. CLI 1.7.4
+found all seven. Individual copy installations of the five new workflow skills
+passed for Codex, Claude Code and Cursor; combined five-name selection and a
+wildcard installation of all seven passed in fresh Codex projects. Installed
+resource hashes matched source files. No user-level installation was changed.
+
+The five packages are instruction-only and self-contained. Planning does not
+require the execution skill; execution can read another project's existing plan
+format without the planning skill. Diagrams use available Mermaid tooling and
+record unavailable parser/render checks. Project-specific tests and tools may
+have prerequisites; no runtime or connector is installed automatically.
+
+Focused workflow execution evaluations use fresh agents on the current host,
+separately from CLI packaging checks. Their cases and actual outcomes are in the
+[verification report](verification.md) and [evaluation procedure](../evals/workflow-skills/README.md).
+They do not establish behavior on Claude Code, Cursor, every model, or arbitrary
+real projects. Remote discovery/install and hosted CI for these unpublished
+workflow additions remain unverified until pushed and tested.

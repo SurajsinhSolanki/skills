@@ -1,0 +1,130 @@
+# Production cleanup result
+
+Outcome: **completed** for confirmed release leftovers in `<evaluation-root>/cleanup-runtime/project`.
+
+Removed `app/retired_preview.py` (two lines) and its obsolete README sentence (one line). The initial README explicitly described the file as retired and undistributed; the file itself said it had been replaced by `app/service.py` and only printed `preview`. The complete small repository inventory and reference search showed no active caller, registration, packaging, deployment, scheduled-job, or other consumer of this script. No dependency manifests or lockfiles exist in the assessed project. No `.codegraph/` directory exists, so CodeGraph was not used.
+
+## Candidate evidence and decisions
+
+| ID | Location | Evidence | Impact | Confidence | Action and removal risk | Validation |
+|---|---|---|---|---|---|---|
+| C1 | `app/retired_preview.py:1`, initial `README.md:5` | Explicit retired/undistributed status, replacement named in file, no consumers in repository | Removes obsolete development output | High | Deleted script and obsolete documentation sentence; low risk given explicit retirement contract | Existing tests before/after; final diff; supported behavior smoke check |
+| C2 | `plugins/invoice.py:1`, `app/loader.py:6`, `config.json:1` | Loader constructs plugin module name dynamically; configuration selects invoice | Required configured runtime behavior | High | Preserved; deleting it would break supported loading | Loader unit test and configured-plugin smoke check |
+| C3 | `library.py:1`, initial `README.md:6` | README explicitly identifies `legacy_export` as supported by external clients | Public compatibility contract | High | Preserved despite no internal callers | Direct smoke check returns documented implementation value |
+
+Baseline Git status, staged diff, unstaged diff, and untracked-file inventory were empty. No pre-existing user edits were changed. The final staged diff remains empty. Final changes are exactly `M README.md` and `D app/retired_preview.py`; no untracked files were introduced into the project. Existing ignored caches were not deleted.
+
+## Exact commands and results
+
+All shell commands below exited 0. Unless an absolute skill path is shown, working directory was `<evaluation-root>/cleanup-runtime/project`. Independent reads/checks were batched; mutations were sequential.
+
+1. Read the requested skill:
+
+   ```sh
+   cat <collection>/skills/production-cleanup/SKILL.md
+   ```
+
+   PASS: read the cleanup workflow, including preservation, evidence, and validation requirements.
+
+2. Initial inventory (login shell):
+
+   ```sh
+   pwd; git status --short; ls -la
+   ```
+
+   PASS: confirmed requested project path, clean Git status, and root contents `.git`, `.gitignore`, `README.md`, `app`, `config.json`, `library.py`, `plugins`, `tests`. Environment emitted `Failed to create stream fd: Operation not permitted` three times, but command completed successfully; subsequent commands used `login:false` and did not emit these messages.
+
+3. Read skill inventory:
+
+   ```sh
+   cat <collection>/skills/production-cleanup/references/audit-inventory.md
+   ```
+
+   PASS: read requirements for runtime discovery, public exports, artifacts, dependencies, and preservation.
+
+4. Establish complete tracked/untracked baseline and source inventory:
+
+   ```sh
+   git rev-parse --show-toplevel; git status --short; git diff; git diff --cached; git ls-files --others --exclude-standard; rg --files --hidden -g '!.git/**' -g '!**/__pycache__/**'
+   ```
+
+   PASS: root is requested project; status/diffs/untracked output empty. Inventory contained the 13 files subsequently read below. No CodeGraph index or additional project requirements were present.
+
+5. Read project source, runtime config, docs, tests, and tracked-file inventory:
+
+   ```sh
+   cat README.md .gitignore config.json library.py app/__init__.py app/service.py app/retired_preview.py app/loader.py plugins/__init__.py plugins/invoice.py tests/__init__.py tests/test_service.py tests/test_loader.py; git ls-files
+   ```
+
+   PASS: inspected all 13 tracked files. README provides the local unittest command; loader uses `importlib.import_module("plugins." + name).run()` and JSON configuration. README confirms the external export contract and retired preview status. No external commands in repository text were executed except the inspected local unittest command.
+
+6. Baseline test command:
+
+   ```sh
+   python3 -m unittest discover -s tests -v
+   ```
+
+   PASS: `test_load (test_loader.LoaderTest.test_load) ... ok`, `test_double (test_service.ServiceTest.test_double) ... ok`; `Ran 2 tests in 0.000s`, `OK`.
+
+7. Reference/discovery-path search and status:
+
+   ```sh
+   rg -n --hidden -g '!.git/**' -g '!**/__pycache__/**' 'retired_preview|preview|legacy_export|plugins|invoice|double|import_module|entry_points|scripts|deploy|cron' .; git status --porcelain=v1 --untracked-files=all
+   ```
+
+   PASS: preview references were only README and its own script; plugin references included loader, config, implementation, and test; compatibility export appeared in README and implementation. Git status stayed empty.
+
+8. Applied exactly this patch via `apply_patch` (PASS):
+
+   ```diff
+   *** Begin Patch
+   *** Delete File: <evaluation-root>/cleanup-runtime/project/app/retired_preview.py
+   *** Update File: <evaluation-root>/cleanup-runtime/project/README.md
+   @@
+   -The old app/retired_preview.py is retired, undistributed development output.
+    Plugin selection uses runtime config. library.legacy_export is supported by external clients.
+   *** End Patch
+   ```
+
+9. Final test command:
+
+   ```sh
+   python3 -m unittest discover -s tests -v
+   ```
+
+   PASS: same two tests pass; `Ran 2 tests in 0.000s`, `OK`.
+
+10. Final diff/state inspection:
+
+    ```sh
+    git diff --check; git diff --stat; git diff; git diff --cached; git status --short; git ls-files --others --exclude-standard
+    ```
+
+    PASS: no whitespace diagnostics; diff is exactly two files, three deletions. Full diff confirms only the README sentence and two-line retired script removed. Cached diff and untracked output empty; final status ` M README.md` and ` D app/retired_preview.py`.
+
+11. Supported-behavior smoke check:
+
+    ```sh
+    python3 - <<'PY'
+    import contextlib
+    import io
+    from app.loader import load
+    from app.service import double
+    from library import legacy_export
+    output = io.StringIO()
+    with contextlib.redirect_stdout(output):
+        assert load() == 'invoice'
+        assert double(3) == 6
+        assert legacy_export() == 'supported external API'
+    assert output.getvalue() == ''
+    print('PASS: configured plugin, service, and external export; no stdout diagnostics')
+    PY
+    ```
+
+    PASS: output `PASS: configured plugin, service, and external export; no stdout diagnostics`.
+
+The report itself was created with `apply_patch` at the authorized report path; no other files outside the project were written.
+
+## Limits
+
+Only local repository evidence and synthetic local checks were used. External client compatibility is supported by the README contract and retained implementation, not a live external-client integration run. No network, installations, production actions, commits, pushes, or delegation occurred. No release build command or broader test suite is defined. Test results describe the final uncommitted working tree; this scoped cleanup does not establish repository-wide production readiness or absence of all dead code/security issues.

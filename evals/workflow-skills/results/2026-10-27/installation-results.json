@@ -1,0 +1,325 @@
+[
+  {
+    "label": "codex-production-cleanup",
+    "agent": "codex",
+    "selected": [
+      "production-cleanup"
+    ],
+    "returncode": 0,
+    "found": [
+      "production-cleanup"
+    ],
+    "expected": [
+      "production-cleanup"
+    ],
+    "files_match": {
+      "production-cleanup": true
+    }
+  },
+  {
+    "label": "codex-codebase-diagrams",
+    "agent": "codex",
+    "selected": [
+      "codebase-diagrams"
+    ],
+    "returncode": 0,
+    "found": [
+      "codebase-diagrams"
+    ],
+    "expected": [
+      "codebase-diagrams"
+    ],
+    "files_match": {
+      "codebase-diagrams": true
+    }
+  },
+  {
+    "label": "codex-implementation-planning",
+    "agent": "codex",
+    "selected": [
+      "implementation-planning"
+    ],
+    "returncode": 0,
+    "found": [
+      "implementation-planning"
+    ],
+    "expected": [
+      "implementation-planning"
+    ],
+    "files_match": {
+      "implementation-planning": true
+    }
+  },
+  {
+    "label": "codex-feature-hardening",
+    "agent": "codex",
+    "selected": [
+      "feature-hardening"
+    ],
+    "returncode": 0,
+    "found": [
+      "feature-hardening"
+    ],
+    "expected": [
+      "feature-hardening"
+    ],
+    "files_match": {
+      "feature-hardening": true
+    }
+  },
+  {
+    "label": "codex-execute-plan",
+    "agent": "codex",
+    "selected": [
+      "execute-plan"
+    ],
+    "returncode": 0,
+    "found": [
+      "execute-plan"
+    ],
+    "expected": [
+      "execute-plan"
+    ],
+    "files_match": {
+      "execute-plan": true
+    }
+  },
+  {
+    "label": "claude-code-production-cleanup",
+    "agent": "claude-code",
+    "selected": [
+      "production-cleanup"
+    ],
+    "returncode": 0,
+    "found": [
+      "production-cleanup"
+    ],
+    "expected": [
+      "production-cleanup"
+    ],
+    "files_match": {
+      "production-cleanup": true
+    }
+  },
+  {
+    "label": "claude-code-codebase-diagrams",
+    "agent": "claude-code",
+    "selected": [
+      "codebase-diagrams"
+    ],
+    "returncode": 0,
+    "found": [
+      "codebase-diagrams"
+    ],
+    "expected": [
+      "codebase-diagrams"
+    ],
+    "files_match": {
+      "codebase-diagrams": true
+    }
+  },
+  {
+    "label": "claude-code-implementation-planning",
+    "agent": "claude-code",
+    "selected": [
+      "implementation-planning"
+    ],
+    "returncode": 0,
+    "found": [
+      "implementation-planning"
+    ],
+    "expected": [
+      "implementation-planning"
+    ],
+    "files_match": {
+      "implementation-planning": true
+    }
+  },
+  {
+    "label": "claude-code-feature-hardening",
+    "agent": "claude-code",
+    "selected": [
+      "feature-hardening"
+    ],
+    "returncode": 0,
+    "found": [
+      "feature-hardening"
+    ],
+    "expected": [
+      "feature-hardening"
+    ],
+    "files_match": {
+      "feature-hardening": true
+    }
+  },
+  {
+    "label": "claude-code-execute-plan",
+    "agent": "claude-code",
+    "selected": [
+      "execute-plan"
+    ],
+    "returncode": 0,
+    "found": [
+      "execute-plan"
+    ],
+    "expected": [
+      "execute-plan"
+    ],
+    "files_match": {
+      "execute-plan": true
+    }
+  },
+  {
+    "label": "cursor-production-cleanup",
+    "agent": "cursor",
+    "selected": [
+      "production-cleanup"
+    ],
+    "returncode": 0,
+    "found": [
+      "production-cleanup"
+    ],
+    "expected": [
+      "production-cleanup"
+    ],
+    "files_match": {
+      "production-cleanup": true
+    }
+  },
+  {
+    "label": "cursor-codebase-diagrams",
+    "agent": "cursor",
+    "selected": [
+      "codebase-diagrams"
+    ],
+    "returncode": 0,
+    "found": [
+      "codebase-diagrams"
+    ],
+    "expected": [
+      "codebase-diagrams"
+    ],
+    "files_match": {
+      "codebase-diagrams": true
+    }
+  },
+  {
+    "label": "cursor-implementation-planning",
+    "agent": "cursor",
+    "selected": [
+      "implementation-planning"
+    ],
+    "returncode": 0,
+    "found": [
+      "implementation-planning"
+    ],
+    "expected": [
+      "implementation-planning"
+    ],
+    "files_match": {
+      "implementation-planning": true
+    }
+  },
+  {
+    "label": "cursor-feature-hardening",
+    "agent": "cursor",
+    "selected": [
+      "feature-hardening"
+    ],
+    "returncode": 0,
+    "found": [
+      "feature-hardening"
+    ],
+    "expected": [
+      "feature-hardening"
+    ],
+    "files_match": {
+      "feature-hardening": true
+    }
+  },
+  {
+    "label": "cursor-execute-plan",
+    "agent": "cursor",
+    "selected": [
+      "execute-plan"
+    ],
+    "returncode": 0,
+    "found": [
+      "execute-plan"
+    ],
+    "expected": [
+      "execute-plan"
+    ],
+    "files_match": {
+      "execute-plan": true
+    }
+  },
+  {
+    "label": "combined-five",
+    "agent": "codex",
+    "selected": [
+      "production-cleanup",
+      "codebase-diagrams",
+      "implementation-planning",
+      "feature-hardening",
+      "execute-plan"
+    ],
+    "returncode": 0,
+    "found": [
+      "codebase-diagrams",
+      "execute-plan",
+      "feature-hardening",
+      "implementation-planning",
+      "production-cleanup"
+    ],
+    "expected": [
+      "codebase-diagrams",
+      "execute-plan",
+      "feature-hardening",
+      "implementation-planning",
+      "production-cleanup"
+    ],
+    "files_match": {
+      "codebase-diagrams": true,
+      "execute-plan": true,
+      "feature-hardening": true,
+      "implementation-planning": true,
+      "production-cleanup": true
+    }
+  },
+  {
+    "label": "wildcard-seven",
+    "agent": "codex",
+    "selected": [
+      "*"
+    ],
+    "returncode": 0,
+    "found": [
+      "codebase-diagrams",
+      "design-psychology-rules",
+      "execute-plan",
+      "feature-hardening",
+      "implementation-planning",
+      "pr-review",
+      "production-cleanup"
+    ],
+    "expected": [
+      "codebase-diagrams",
+      "design-psychology-rules",
+      "execute-plan",
+      "feature-hardening",
+      "implementation-planning",
+      "pr-review",
+      "production-cleanup"
+    ],
+    "files_match": {
+      "codebase-diagrams": true,
+      "design-psychology-rules": true,
+      "execute-plan": true,
+      "feature-hardening": true,
+      "implementation-planning": true,
+      "pr-review": true,
+      "production-cleanup": true
+    }
+  }
+]

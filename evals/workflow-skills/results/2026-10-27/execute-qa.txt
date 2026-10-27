@@ -1,0 +1,31 @@
+# UX-9 execution report
+
+Project: `<evaluation-root>/execute-qa/project`
+
+Implemented UX-9 only. `Profile.rename` now rejects empty and whitespace-only strings with `ValueError("Display name must not be blank")` before mutating state. Valid input is stored and returned exactly. Updated the stale implementation location in `roadmap.md` from `app/old_profile.py` to `app/profile.py`.
+
+## Acceptance and status
+
+- **PASS:** Empty and whitespace-only names rejected. Test cases cover empty string, space, tab/newline and Unicode em space.
+- **PASS:** Rejection preserves the existing name.
+- **PASS:** Valid name stored and returned unchanged, including surrounding whitespace.
+- **BLOCKED:** Required product-owner manual copy approval has not been supplied. No human approval was simulated or claimed.
+- Roadmap UX-9 status: **Awaiting QA**, with implementation, test evidence and remaining copy approval recorded. UX-7 and UX-10 unchanged. UX-10 remains dependent on UX-9; no next task was started.
+
+## Exact commands and results
+
+All shell commands ran with the project above as working directory. Each shell invocation emitted three `Failed to create stream fd: Operation not permitted` startup warnings; actual command output and exit codes remained available. No command failures were attributed to product behavior.
+
+1. `cat <collection>/skills/execute-plan/SKILL.md` — exit 0; read the requested skill.
+2. `pwd && ls -la` — exit 0; confirmed project scope, `.git`, and absence of a root `.codegraph/` directory.
+3. `git status --short && git diff && git diff --cached && rg --files -g '!*__pycache__*' -g '!*.pyc' -g 'AGENTS.md' -g '! .git' && cat README.md roadmap.md` — exit 1: Git status and both diffs were empty, confirming a clean initial tree; the AGENTS-only `rg` filter found no files, so the final `cat` was skipped. This discovery-command failure was corrected by the next command.
+4. `rg --files -g '!*.pyc' && cat README.md roadmap.md && ls -la app tests` — exit 0; discovered the project source/tests, README contract, UX-7 dependency, UX-9 acceptance and mandatory manual approval.
+5. `cat <collection>/skills/execute-plan/references/implementation-boundaries.md` — exit 0; read completion-status guidance.
+6. `cat app/profile.py app/service.py tests/test_profile.py tests/test_service.py && python3 -m unittest discover -s tests -v` — exit 0; inspected relevant implementation and tests; **PASS**, baseline 2 tests.
+7. `python3 -m unittest tests.test_profile -v && python3 -m unittest discover -s tests -v && git diff --check && git status --short && git diff -- app/profile.py tests/test_profile.py roadmap.md` — exit 0; **PASS**, focused 3 tests; **PASS**, full 4 tests; **PASS**, whitespace/diff check; inspected complete final changes. Git status showed only `app/profile.py`, `roadmap.md` and `tests/test_profile.py` modified.
+
+Edits used `apply_patch` to those three project files and this report. No commits, staging, pushes, dependency installs, network, production operations or delegation occurred.
+
+## Evidence and limits
+
+All checks verify the current modified working tree. No pre-existing tracked, staged or untracked user changes were present at baseline; no unrelated source or roadmap tasks changed. Tests were added for the validation contract without changing existing tests. No failures remain in local checks. Required manual copy approval is **NOT RUN / not supplied** and is the sole outstanding completion gate. No broader type-validation or constructor-validation requirement exists in the selected task; changes are confined to rename behavior.

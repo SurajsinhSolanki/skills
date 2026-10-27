@@ -31,6 +31,12 @@ Framework files are original review summaries with optional links to their
 technical sources, rather than copies of vendor manuals. Source links are
 attribution and maintenance references, not dependencies of an offline review.
 
+The five workflow skills are original adaptations of maintainer-provided prompts,
+with the maintainer's confirmation of MIT distribution rights. Each standalone
+package retains its own license and notice. Original summaries identify official
+technical sources and their verification dates; vendor documentation and tools
+are not copied or relicensed. See the [conversion coverage](docs/workflow-skills-conversion.md).
+
 The external validation and installation tools are not vendored into this
 repository. Their own licenses apply when installed. Contributors must retain
 attribution and identify the terms of any additional third-party adaptation.

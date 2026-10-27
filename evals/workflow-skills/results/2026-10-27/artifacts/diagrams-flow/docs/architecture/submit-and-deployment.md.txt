@@ -1,0 +1,92 @@
+# Submit flow and configured deployment
+
+This document describes the current workspace based on baseline commit
+`352dd4a`. The workspace was clean before this documentation was added. These
+are source and configuration views; no running deployment was inspected.
+
+## Submit request flow
+
+Purpose: explain the decisions, return values, and store mutation implemented by
+[`app/api.py::submit`](../../app/api.py).
+
+```mermaid
+flowchart TD
+    caller["Caller supplies payload and store"] --> submit_call["submit(payload, store)"]
+    submit_call --> name_check{"Is payload.get('name') truthy?"}
+    name_check -->|No| invalid_result["Return (400, error: missing name)"]
+    name_check -->|Yes| append_name["store.append(payload['name'])"]
+    append_name --> created_result["Return (201, created: True)"]
+```
+
+`submit` first evaluates `payload.get("name")`. A missing or falsey value returns
+`(400, {"error": "missing name"})` without appending. A truthy value is appended
+unchanged to `store`, then the function returns `(201, {"created": True})`.
+The README identifies the supplied store as an in-memory list. This implementation
+does not validate that the name is a string or transform its contents.
+
+Evidence for the arrows and conditions:
+
+| Behavior | Source |
+| --- | --- |
+| Caller supplies both arguments | `submit(payload, store)`, [API source](../../app/api.py), line 1 |
+| Truthiness decision and invalid return | `submit`, [API source](../../app/api.py), lines 2–3 |
+| Append precedes successful return | `submit`, [API source](../../app/api.py), lines 4–5 |
+| Store is an in-memory list in this example | [README](../../README.md) |
+
+Limits: no HTTP route, method, request parser, response serialization, caller,
+authentication, authorization, or persistence layer is present in the supplied
+source. The numeric return values are function results; HTTP handling is not
+shown. Exceptions from an unsuitable payload or a failed `append` are not caught
+here, so the diagram's two explicit return paths assume those operations work.
+No queue, retry, deduplication, or durable storage guarantee is established.
+The existing [service test](../../tests/test_service.py) tests `double`, not
+`submit`; direct local checks of `submit` are recorded in the evaluation report.
+
+## Configured deployment
+
+Purpose: show only the service, build context, and port mapping declared by
+[`compose.yaml`](../../compose.yaml).
+
+```mermaid
+flowchart LR
+    build_context["Project directory: build context ."] -->|Configured build| api_service["Compose service: api"]
+    host_port["Host port 8080"] -->|Configured port mapping| container_port["api container port 8080"]
+    subgraph api_boundary["Configured api service boundary"]
+        api_service
+        container_port
+    end
+```
+
+The configuration declares one service named `api`, `build: .`, and
+`ports: ["8080:8080"]`. The build arrow represents configuration, not a completed
+build. The port arrow represents the configured host-to-container mapping, not
+observed traffic or an established listening process. No protocol or application
+server is inferred from the port number.
+
+Evidence for the nodes and arrows:
+
+| Configuration | Source |
+| --- | --- |
+| One declared service, `api` | [Compose configuration](../../compose.yaml), lines 1–2 |
+| Build context is the project directory | [Compose configuration](../../compose.yaml), line 3 |
+| Host 8080 maps to container 8080 | [Compose configuration](../../compose.yaml), line 4 |
+| Proposed local configuration; no deployment state recorded | [README](../../README.md) |
+
+Limits: the supplied project has no Dockerfile, image definition, startup command,
+HTTP server wiring, or listener implementation. The declared build cannot be
+established as runnable from these files. There are no declared database, worker,
+volume, external service, or cloud resources. No container build, container start,
+network probe, or runtime inspection was performed.
+
+## Documentation checks
+
+Both diagrams use basic Mermaid flowcharts, opaque node identifiers, and quoted
+labels. Nodes, arrows, and conditions were manually traced to the sources above;
+local documentation links were checked. No local Mermaid CLI or resolvable
+Mermaid package was found, so syntax parsing and rendering were **not run**.
+No diagram image was generated or visually inspected. Layout and destination
+renderer compatibility remain unverified; the destination and version were not
+specified. `docker compose config --quiet` passed; this checks configuration
+validity, not buildability or runtime deployment. The existing unit test and nine
+direct `submit` cases passed. No dependencies were installed and no content was
+uploaded.

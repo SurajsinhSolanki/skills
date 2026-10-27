@@ -1,0 +1,22 @@
+import unittest
+from app.profile import Profile
+class ProfileTest(unittest.TestCase):
+    def test_valid_name(self):
+        p = Profile()
+        self.assertEqual(p.rename("Grace"), "Grace")
+
+    def test_blank_names_are_rejected_and_preserve_stored_name(self):
+        for name in ("", " ", "   ", "\t", "\n", " \t\r\n "):
+            p = Profile("Grace")
+            # Check both outcomes even when rejection fails.
+            with self.subTest(name=name, outcome="rejection"):
+                with self.assertRaises(ValueError):
+                    p.rename(name)
+            with self.subTest(name=name, outcome="stored name"):
+                self.assertEqual(p.name, "Grace")
+
+    def test_valid_name_is_preserved_exactly(self):
+        p = Profile()
+        name = "  Grace Hopper  "
+        self.assertEqual(p.rename(name), name)
+        self.assertEqual(p.name, name)

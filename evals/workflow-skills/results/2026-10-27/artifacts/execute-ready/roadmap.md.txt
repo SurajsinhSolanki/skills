@@ -1,0 +1,19 @@
+# Delivery roadmap
+
+Owner note: preserve ordering.
+
+## UX-7 — Profile storage
+Status: Done
+Verified: existing storage checks.
+
+## UX-9 — Validate profile names
+Status: Done
+Depends on: UX-7
+Implementation: app/profile.py::Profile.rename (current path; replaces stale app/old_profile.py hint).
+Acceptance: reject empty names with ValueError, preserve old state and valid input.
+Verified: `python3 -m unittest tests.test_profile -v` — PASS (3 tests); empty and whitespace-only names raise ValueError without changing stored state; valid names retain their exact input, including surrounding whitespace.
+Regression: `python3 -m unittest discover -s tests -v` — PASS (4 tests); `git diff --check` — PASS. Verified locally on the working tree, 2026-10-27.
+
+## UX-10 — Add avatars
+Status: Ready
+Depends on: UX-9

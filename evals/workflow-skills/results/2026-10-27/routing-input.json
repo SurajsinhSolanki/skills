@@ -1,0 +1,94 @@
+{
+  "skills": [
+    {
+      "name": "codebase-diagrams",
+      "description": "Create or update Mermaid architecture, user/data/API flows, sequence, database, deployment, and module diagrams grounded in repository evidence. Use for visual technical documentation of an existing system or selected workflow; not UI mockups, implementation planning, or a mandatory full-codebase knowledge bundle."
+    },
+    {
+      "name": "design-psychology-rules",
+      "description": "Design, build, or critique user-facing interfaces using psychology-informed usability, accessibility, discoverability, and ethical-design checks. Use for screens, product flows, mockups, and pre-ship UX reviews; not unrelated backend changes or general code review."
+    },
+    {
+      "name": "execute-plan",
+      "description": "Implement a selected ready task from an existing project plan, verify its acceptance criteria, and update task status with evidence. Use when asked to execute a plan task or take the next unblocked roadmap item; not planning-only requests, automatic whole-roadmap execution, or unrelated cleanup."
+    },
+    {
+      "name": "feature-hardening",
+      "description": "Harden one selected feature with risk-based tests, failure-path investigation, and narrow verified bug fixes. Use for feature robustness, edge-case testing, and failure-handling requests; honors tests-only or audit-only scope. Not a general PR review, repository-wide rewrite, or automatic coverage expansion during ordinary implementation."
+    },
+    {
+      "name": "implementation-planning",
+      "description": "Analyze a repository and create or update an implementation-ready plan for a feature, bug, refactor, migration, or technical requirement. Use when the user requests planning or roadmap maintenance before coding; preserves existing plan formats and task history. Does not implement tasks or automatically create saved roadmaps for inline planning requests."
+    },
+    {
+      "name": "pr-review",
+      "description": "Review pull requests, branch comparisons, staged changes, or working-tree diffs for correctness, requirements, security, reliability, and production readiness. Use for pre-merge reviews, re-reviews after fixes, or \u201cis this safe to ship?\u201d requests. Produces evidence-backed findings and an approval, request-changes, or incomplete assessment; supports inline comments and host-structured findings. Reviews only, without applying fixes."
+    },
+    {
+      "name": "production-cleanup",
+      "description": "Audit or remove confirmed unnecessary code, dependencies, demo artifacts, assets, and debugging leftovers while preserving intended behavior. Use for conservative repository cleanup and release cleanup requests; not ordinary code review, dependency upgrades, feature development, or a full security certification."
+    }
+  ],
+  "requests": [
+    {
+      "id": 1,
+      "prompt": "Remove confirmed retired demo artifacts while preserving runtime behavior."
+    },
+    {
+      "id": 2,
+      "prompt": "Review this PR without changing code."
+    },
+    {
+      "id": 3,
+      "prompt": "Audit unused dependencies and recommend safe removals, but do not edit files."
+    },
+    {
+      "id": 4,
+      "prompt": "Document this API's current request flow with a Mermaid sequence diagram."
+    },
+    {
+      "id": 5,
+      "prompt": "Create an interactive visual mockup for our new checkout screen."
+    },
+    {
+      "id": 6,
+      "prompt": "Explain the existing payment job architecture visually, without proposing implementation tasks."
+    },
+    {
+      "id": 7,
+      "prompt": "Plan how to add export filters, using the existing roadmap. Do not implement."
+    },
+    {
+      "id": 8,
+      "prompt": "Implement the ready task EXP-4 in our roadmap."
+    },
+    {
+      "id": 9,
+      "prompt": "Assess the current export flow and give an inline implementation plan, without saved files."
+    },
+    {
+      "id": 10,
+      "prompt": "Harden profile updates against invalid inputs and write regression tests for narrow fixes."
+    },
+    {
+      "id": 11,
+      "prompt": "Rename this local variable for clarity."
+    },
+    {
+      "id": 12,
+      "prompt": "Add tests only for profile validation; report implementation defects without fixing them."
+    },
+    {
+      "id": 13,
+      "prompt": "Take the next ready roadmap task, implement it, and verify its criteria."
+    },
+    {
+      "id": 14,
+      "prompt": "Update our roadmap to include PDF export; planning only."
+    },
+    {
+      "id": 15,
+      "prompt": "Execute the selected robustness task TEST-7 from our plan, including its tests and status update."
+    }
+  ]
+}
