@@ -10,12 +10,19 @@ the currently available release; pin `npx skills@1.7.4` to reproduce these check
 
 Run from the project that should receive the skill. The source is
 [SurajsinhSolanki/skills](https://github.com/SurajsinhSolanki/skills).
+These commands retrieve published content; newly added local skills must be
+pushed before GitHub installations can retrieve them. See the
+[verification record](verification.md) for what has actually been tested.
 
 ```bash
 # Interactive skill/agent selection
 npx skills add SurajsinhSolanki/skills
 # Select the existing review skill
 npx skills add SurajsinhSolanki/skills --skill pr-review
+# Select the design skill
+npx skills add SurajsinhSolanki/skills --skill design-psychology-rules
+# Select both skills
+npx skills add SurajsinhSolanki/skills --skill pr-review --skill design-psychology-rules
 # Discover without installing
 npx skills add SurajsinhSolanki/skills --list
 # Select every skill; quote the wildcard to prevent shell expansion
@@ -24,9 +31,8 @@ npx skills add SurajsinhSolanki/skills --skill '*'
 npx skills add SurajsinhSolanki/skills --skill pr-review --agent codex --yes
 ```
 
-For multiple distinct skills, the documented syntax is
-`npx skills add SurajsinhSolanki/skills --skill NAME_A --skill NAME_B`. Replace both names with
-real catalog entries. There is only one skill today; no second skill is implied.
+Repeat `--skill` to select multiple names, as in the two-skill example above.
+Use `--list` to confirm which skills are available at the selected source.
 
 Installation is project-local by default; add `--global` only when you intend to
 install for your user account. Use `--agent claude-code`, `--agent codex`, or
@@ -41,6 +47,7 @@ with your checkout. A local source is also useful for testing unpublished change
 ```bash
 npx skills add /path/to/agent-skills --list
 npx skills add /path/to/agent-skills --skill pr-review --agent codex --yes --copy
+npx skills add /path/to/agent-skills --skill design-psychology-rules --agent codex --yes --copy
 ```
 
 All framework, workflow, style, policy, and report references are bundled inside
@@ -49,9 +56,14 @@ remote repository retrieval, optional provider context, and running a reviewed
 project's own dependency-dependent gates may require network access. Git is
 needed for the review workflow.
 
+`design-psychology-rules` bundles all three design references and its MIT
+license. The listed usability and accessibility checks can be applied offline;
+official source links are optional maintenance references. A static artifact
+cannot verify runtime behavior, and the skill must disclose that limit.
+
 ## Troubleshooting
 
-- No skill discovered: check that the source has `skills/pr-review/SKILL.md`
+- No skill discovered: check that the source has `skills/<name>/SKILL.md`
   and that a root `SKILL.md` is not shadowing nested discovery.
 - Wrong project/agent: run in the intended project and choose `--agent` explicitly.
   Installation does not prove that an agent loaded or followed the skill.

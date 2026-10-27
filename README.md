@@ -2,12 +2,15 @@
 
 A collection of independently installable AI coding-agent skills in the
 [Agent Skills format](https://agentskills.io/specification). The collection
-currently contains one maintained skill, `pr-review`; new skills belong in
-separate directories under `skills/`.
+contains two independently installable skills: `pr-review` and
+`design-psychology-rules`. New skills belong in separate directories under `skills/`.
 
 `pr-review` provides evidence-based, read-only code review with bundled offline
 framework guidance. Its 18 framework passes, 21 style guides, and review modes
 remain together in one installable package. Load references selectively.
+
+`design-psychology-rules` provides 49 rules for usable, accessible, discoverable,
+and ethical interfaces, with evidence-aware design reviews and bundled guidance.
 
 ## Install
 
@@ -16,6 +19,7 @@ From your target project, with Node.js 22.20 or newer:
 ```bash
 npx skills add SurajsinhSolanki/skills
 npx skills add SurajsinhSolanki/skills --skill pr-review
+npx skills add SurajsinhSolanki/skills --skill design-psychology-rules
 npx skills add SurajsinhSolanki/skills --list
 npx skills add SurajsinhSolanki/skills --skill '*'
 ```
@@ -30,6 +34,7 @@ agent selection, multiple skills, scope, and troubleshooting.
 <!-- SKILLS:START -->
 | Skill | Description | Installation |
 |---|---|---|
+| [design-psychology-rules](skills/design-psychology-rules/SKILL.md) | Design, build, or critique user-facing interfaces using psychology-informed usability, accessibility, discoverability, and ethical-design checks. Use for screens, product flows, mockups, and pre-ship UX reviews; not unrelated backend changes or general code review. | `npx skills add SurajsinhSolanki/skills --skill design-psychology-rules` |
 | [pr-review](skills/pr-review/SKILL.md) | Review pull requests, branch comparisons, staged changes, or working-tree diffs for correctness, requirements, security, reliability, and production readiness. Use for pre-merge reviews, re-reviews after fixes, or “is this safe to ship?” requests. Produces evidence-backed findings and an approval, request-changes, or incomplete assessment; supports inline comments and host-structured findings. Reviews only, without applying fixes. | `npx skills add SurajsinhSolanki/skills --skill pr-review` |
 <!-- SKILLS:END -->
 
@@ -40,22 +45,29 @@ stale catalogs. The installation source is configured in
 
 ## Use
 
-Once installed, ask the agent to use the review skill, for example:
+Once installed, ask the agent to use the relevant skill, for example:
 
 - “Use pr-review to review my staged changes.”
 - “Use pr-review to compare this branch against main.”
 - “Re-review this PR against the previous head and report remaining findings.”
+- “Use design-psychology-rules to review this checkout flow for usability, accessibility, and transparent pricing.”
 
-The skill follows project rules, keeps team-policy and Google-style opt-ins
+`pr-review` follows project rules, keeps team-policy and Google-style opt-ins
 independent, and reviews without applying fixes. Its [usage guide](skills/pr-review/README.md)
 explains targets, report modes, verdicts, offline coverage, and verification limits.
 It can inspect sensitive project content: use the agent's existing permissions
 and review commands before authorizing execution.
 
+The [design skill](skills/design-psychology-rules/SKILL.md) separates confirmed
+problems, suggestions, and unverified behavior. A screenshot cannot establish
+complete accessibility conformance. A design review produces feedback; requested
+implementation is a separate scope. Neither skill automatically activates the other.
+
 ## Layout
 
 ```text
 skills/pr-review/       Installable skill and its existing resources/evaluations
+skills/design-psychology-rules/  Design skill, local references, and MIT license
 scripts/               Collection validation and catalog generation
 tests/                 Collection validator regression tests
 docs/                  Installation, compatibility, development, verification
