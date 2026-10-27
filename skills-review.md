@@ -1,5 +1,7 @@
 # Skill instruction review
 
+> **Fixes applied:** The reviewed issues have been addressed in the installed skills. See [implementation and validation](skill-fixes/fixes-applied.md). The findings below describe the earlier versions.
+
 Reviewed 27 October 2026.
 
 This is a static review of the **23 skills advertised in this chat**, plus **21 additional entrypoints** found in the configured skill roots: 20 cached artifact templates and one review helper. I examined routing, operational constraints, conflicting instructions, resource references and maintenance risks. Large entrypoints received targeted inspection of those areas. This is not an exhaustive audit of every supporting script, reference, generated artifact or live integration. Orca's version-served guides were not executed or validated. Temporary plugin trees outside the configured roots are excluded.

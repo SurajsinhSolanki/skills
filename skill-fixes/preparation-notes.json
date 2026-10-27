@@ -1,0 +1,80 @@
+{
+  "codebase-knowledge": [
+    "Before replacing an existing file, verify both its `<!-- AUTO-GENERATED -->` first body line and its exact-byt",
+    "Compare the current SHA-256 of each `generated_from` source with its recorded source hash in `knowledge/.gener",
+    "1. **Refresh the inventory in memory.** Re-run Phase 1 without overwriting the existing inventory, then diff t",
+    "Run `python3 <skill-directory>/scripts/quick_validate.py --bundle <knowledge-directory>` first, then do the se",
+    "- Check source freshness against recorded source hashes. If no source baseline exists, report freshness as unv",
+    "Produce a short report grouped by issue type. Validation alone must not modify the checklist, log, manifest, o"
+  ],
+  "imagegen": [
+    "For transparent images, use the current built-in tool schema: set `transparent_background: true` when exposed,",
+    "Use the native transparency control advertised by the current tool (`transparent_background: true` in supporte",
+    "- Do not change the bundled generator during ordinary image work. If a required capability is unavailable, rep"
+  ],
+  "find-skills": [
+    "- Explicitly asks to discover a reusable skill for X, or a demonstrated capability gap makes discovery useful",
+    "- Asks what installable capability is available for a specialized task; answer ordinary can-you-do-X task requ",
+    "### Step 2: Check existing capabilities first",
+    "npx skills add <owner/repo@skill>",
+    "Choose the user-requested installation scope. Add `-g` only for an authorized user-level installation; use `-y"
+  ],
+  "skill-installer": [
+    "These scripts use the network. Run within current permissions first; request scoped escalation only when a san",
+    "- System skills are preinstalled. If the user explicitly requests replacement, prepare the replacement separat"
+  ],
+  "frontend-design": [
+    "Type: use the existing type system where established; otherwise choose the fewest typefaces needed for clear d",
+    "When the brief benefits from a signature element, concentrate boldness there."
+  ],
+  "orca-cli": [
+    "\"handoff\" / \"handover\" / \"give this to another\n  agent\" in an Orca context, \"Orca browser\", \"orca artifacts\", "
+  ],
+  "orchestration": [
+    "  Coordinate supervised workers only in an Orca context:",
+    "Engage Orca orchestration when working in an Orca context and you need structured multi-agent coordination:"
+  ],
+  "computer-use": [
+    "  Drives the GUI of a visible local app window in an Orca session through `orca computer`:"
+  ],
+  "documents": [
+    "- Fix material clipping, overlap, missing glyphs and unreadable or broken layout, then re-render affected page",
+    "Fix material formatting failures using the bounded render-and-repair procedure above; disclose unresolved defe"
+  ],
+  "pdf": [
+    "Report the ambiguity and preserve the interactive source. Produce a static result only if the user requested o"
+  ],
+  "sites": [
+    "description: Build or modify websites with Sites hosting when the user selects Sites, requests a hosted websit",
+    "Take the requested Sites website through its supported workflow. Publish when hosting or deployment is request",
+    "Run repository-required checks, including lint where required, and additional checks appropriate to the change"
+  ],
+  "sites-remix": [
+    "Prefer at most **three questions per batch**, asking only unresolved decisions that change implementation. Add"
+  ],
+  "plugin-management": [
+    "- Discover the current plugin-removal capability and follow its advertised schema (`uninstall_plugin` on suppo"
+  ],
+  "spreadsheets": [
+    "Read this entrypoint for routing and completion. Load the linked modeling, style, API and workflow references ",
+    "- Deliverable is saved in the requested format and location. Default to `.xlsx` for a new workbook when no for"
+  ],
+  "excel-live-control": [
+    "Before the first `run_officejs` call, read `officejs.md` completely and follow its decision boundary and instr"
+  ],
+  "template-creator": [
+    "Update only explicitly identified artifact-template skills. For multiple targets, process each sequentially wi",
+    "Stop for any target that is not a direct child of the personal skills directory or is ambiguous. When several "
+  ],
+  "visualize": [
+    "- Follow the host's communication requirements for skill announcements and progress. Keep updates brief and us",
+    "Avoid unnecessary implementation details in the explanation. Host-required skill announcements and artifact ha",
+    "- Use weights `400` and `500` and host-scaled typography by default. Plot labels may use the explicit chart-la"
+  ],
+  "pets": [
+    "State the exact pet name and stable ID and explain permanent deletion. Use the host/tool confirmation path onc"
+  ],
+  "update-pet": [
+    "5. Before a mutation, capture the current `active_pet_id` (or confirmed inactive state) from a fresh collectio"
+  ]
+}

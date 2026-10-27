@@ -1,0 +1,394 @@
+[
+  {
+    "target": "/home/surajsinh/.agents/skills/orchestration/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/orchestration/SKILL.md",
+    "before_sha256": "cd1b364bf35781bad06bf75ab1766afa8d6cec69cb2060529691d89871a2098a",
+    "after_sha256": "bd92bdae792c2fda287679a53ede26190f5f3c6c9e09b28387997dda14f1037e",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/orca-cli/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/orca-cli/SKILL.md",
+    "before_sha256": "aa76f86505010096e8ea9edda1705a78aae7af45e54485f3fe0460664c1d9e4a",
+    "after_sha256": "2c2e8e5d0a092056c411b062a8ca8fd32326530e0a2c29b9c6a1a26f77437e8f",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/codebase-knowledge/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/codebase-knowledge/SKILL.md",
+    "before_sha256": "d8b08bcbacb0999f42b1a0a11483b2519d35fd6396fc1c7b039861d32c527444",
+    "after_sha256": "b6671e24d3a9c88aa5bdbf0af3c27dc3a2da281b915058bf105f9f8f2489f587",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/find-skills/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/find-skills/SKILL.md",
+    "before_sha256": "1e85f6f9686e145aca4a124e3b704b9bbea9aa87e08515c1e352eee70f6e6e7a",
+    "after_sha256": "cd702972135ceda2d38452986a2791cbac3fa55a194002a2bebbec0137558371",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/computer-use/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/computer-use/SKILL.md",
+    "before_sha256": "2839933fd35216845461466403e6061488005f6df57126d0cd0f769ea45753f3",
+    "after_sha256": "0aeed3d5042675fb4c49b16a2a6a4dd85703f48590abc2776a1215de5b7004f1",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/frontend-design/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/frontend-design/SKILL.md",
+    "before_sha256": "1608ea77fbb6fc30d13a97d12cfa8ebf31358d40f0dd97beed24829d6b3f45dd",
+    "after_sha256": "7ab6dc81ac1cc7f8f3aed011d9cac0b8b991adbd7c3de1e831b5c248e6cf353d",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/openai-docs/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/openai-docs/SKILL.md",
+    "before_sha256": "aa6829e21df2223167c85d2e49b6337a7345c84c1033f1ec10182c7882b36d45",
+    "after_sha256": "9d813f78ffed9d3a3d81d2e162b0625b06f6ecaf5e7f99e051dc4b3f0944fe5c",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/skill-creator/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/skill-creator/SKILL.md",
+    "before_sha256": "6656e54755638e8efcf275a472b9672eaa8a9a1b9e59dc210e275b03b59e1e66",
+    "after_sha256": "2d1e8d521032733ad2f5784d14c53961f54537358f023ebf9f1e284d568aef90",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/imagegen/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/imagegen/SKILL.md",
+    "before_sha256": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba",
+    "after_sha256": "3da49d7639f60c5ed5cdce530af476f15939909c13c815ca1ba0ab811a47327a",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/skill-installer/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/skill-installer/SKILL.md",
+    "before_sha256": "d68b77e5bbb34dedab89d134da52855f140fc4b4299b80104f534e3b9e98f8ee",
+    "after_sha256": "b3da52a52850843c36ef97c4c7b1e06f9594306ff44513291b0421acb8bef719",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/sites/1.1.2/skills/sites-remix/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/sites/1.1.2/skills/sites-remix/SKILL.md",
+    "before_sha256": "34a249750d98e38f676fa391819593ab5c14e5f46f9137832a8c49180d47022d",
+    "after_sha256": "6b2ba465a3f73ad2101278c49252d436d4a517b803afb67efb047774c0a584d9",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/sites/1.1.2/skills/sites/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/sites/1.1.2/skills/sites/SKILL.md",
+    "before_sha256": "00750ea5ca37e2b49afd2a57fee2149d22ee4f48af40bc094e6d2cee3e7bd1ad",
+    "after_sha256": "fbc5e881ded6faf76c85abae3a92f5bcfac991072d8ddbe1e5c0eee156260d36",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/plugin-management/0.1.0/skills/plugin-management/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/plugin-management/0.1.0/skills/plugin-management/SKILL.md",
+    "before_sha256": "653841cc21205269f08b0ce135891e1518dac616a766bcfb0b57d788d3f68b10",
+    "after_sha256": "04c6630739a04b28e0a26333b7f4148ea19c69d2b44a2d0ae9862921493a8a31",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-strategy-memorandum/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-strategy-memorandum/SKILL.md",
+    "before_sha256": "51d7882ac94e8e57b323394825728c33925af878806e37277217c2dc12a912e5",
+    "after_sha256": "a8aa9f761f4ed00bf466c4027ffd0f5bcee4d248bb8ff5998fb23fdf80daeb15",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-business-review/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-business-review/SKILL.md",
+    "before_sha256": "27721fc1d67d1b41949caa75ac8f94f81952ff124406878af6524047929e60d2",
+    "after_sha256": "564d1fbee7f8ddee58907ee270808e9b212b8e4538c4ff0eea716b58cab083e0",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-tracker/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-tracker/SKILL.md",
+    "before_sha256": "d97d5be20189b7f53dd269b6e1c5f694eaf53e5a72f6559fcb1578911b7cda82",
+    "after_sha256": "f4c11625d7c06847d3f8e6b66b8c377acd2bf061c2d497425dcb1b707a8de6ed",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-review/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-review/SKILL.md",
+    "before_sha256": "6d63c5cd025ffe936e7bab5db3023672bbaec26af55c2bb8b057d38c202c9c32",
+    "after_sha256": "0efcaf5c8e7702cd5654e40ac32255df57f26d238d0b1af810aa1ab305915087",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-three-statement-forecast/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-three-statement-forecast/SKILL.md",
+    "before_sha256": "74f4a5cccec0107b861548b157e04c51d9b58ec13a990c86394b4c529b8ecf41",
+    "after_sha256": "40c934e9bc90ab967bac309a211e6cbb6f9d16671e0ec1d70593316643bc13c4",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-financial-budget/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-financial-budget/SKILL.md",
+    "before_sha256": "c0b6b7a62a15597aaf2b1ec679e21da48f533b756127f0aef957cdfe9f3da738",
+    "after_sha256": "cf146f00a0f67230c4cedc89e08cfec96ed4dd1b73b03bc378de28ecbc2de6e5",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-legal-memorandum/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-legal-memorandum/SKILL.md",
+    "before_sha256": "51fb9d21baf6119c4ccb1903638a6bac0e859210de63460fffa7025d52e997e0",
+    "after_sha256": "d9babf004a3529cc8028c164de7133dfd316aaec4f310a51b83c3518b11c78d3",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-analytics-dashboard/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-analytics-dashboard/SKILL.md",
+    "before_sha256": "cf5360fd8b197673bb237c52c603c97fa319c875c3dfa2cd8efff52d4422f513",
+    "after_sha256": "2167aac950179c509c29237f3a9704853d69326eb097053f5a5a382da5cf7091",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-sales-pipeline/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-sales-pipeline/SKILL.md",
+    "before_sha256": "15cfeeedf440021f16ed3f3ad8c7c1ef6d48898b9447741e223d2fb41cfc9800",
+    "after_sha256": "b7e65f588019d8aec25e60cf06d158b7e4a5c02a9999f69aa1b671ba4c3d0608",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-design-report/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-design-report/SKILL.md",
+    "before_sha256": "563722f53854e606f8a9f87e37e72d7ef70a22d46d5836b8e4d6abfb1b79e9e0",
+    "after_sha256": "8f13d75188bb8693150fde71170d83f6797e1b423bcafab1f13ec19d18e12733",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-minimal-letterhead/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-minimal-letterhead/SKILL.md",
+    "before_sha256": "880ef094d4d0c89a7bde5ce9bbe4086625c186651e9e6efc8ba8bdd7cc77f9d5",
+    "after_sha256": "bfb108c92f790f88a20f5f3e4cf3e42eb4656c7301c150ea6cf085739beca622",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-team-alignment/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-team-alignment/SKILL.md",
+    "before_sha256": "26d7cafdcd1899a937b325c5d02ac57c162d45002153be33a934d35f81eb6110",
+    "after_sha256": "33eee986293b4c5c7511856ebb123d5d8d173e69bdd8f4ea34ba8e377a5939ab",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-dark-mode/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-dark-mode/SKILL.md",
+    "before_sha256": "b7c8d0c05f75878b9bc21e56a57c41ec1aa29700aca0a24822be0f9f1bd53207",
+    "after_sha256": "c28c106b080c28b3da910492d4e07284f65c270c2597f0d1bc5ab7d2b285ea33",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-kickoff/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-project-kickoff/SKILL.md",
+    "before_sha256": "aa893ebd89e7c8d1db4261d01cc2b1add35d78d00785871ccaaa5fc8db783ec9",
+    "after_sha256": "b622d64bdc7628e6c2016f03b1507dbea7cd8203dc5563eb489ffadaf4556e02",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-calendar/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-operating-calendar/SKILL.md",
+    "before_sha256": "33bb660791a0b9a21628a42c34934932220203b6aabd84e98cb1b45327d0384c",
+    "after_sha256": "7ff0b5a22c8a3f0bd84e7a6b0c478eabfa8da1b84dc84cd98ca7224ccfbd1216",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-light-mode/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-simple-light-mode/SKILL.md",
+    "before_sha256": "7c68430c6cf57b55b457d4735dbd1a46b889bef135a32222902dd0848b6e1752",
+    "after_sha256": "7dd26bd41d39618fb12d7e365d3d4dbc7498cfbf82301404e10b1f6906dd4ec8",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-system-design/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-system-design/SKILL.md",
+    "before_sha256": "87f7b7ed1b0d8410f5e5971cd7f7db9a4165e2f37069e97e52dbfb469b75a57c",
+    "after_sha256": "630126c3789fc5ab160a1f985ac8fbf741d833b20ff5c77fa0f0fa613f74c685",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-market-trends-report/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-market-trends-report/SKILL.md",
+    "before_sha256": "d58d019b89cb6f292ac3ab991d561489eef477ff53ce05fb024a0c936f5af26a",
+    "after_sha256": "c87e68a0d30528744644fffcf82cb88f658b71e30f62004d5622c61dc81f0726",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-experiment-analysis/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-experiment-analysis/SKILL.md",
+    "before_sha256": "0b05effc47df0a14f8e0c3e3597e6722224747435546385d38a2cae279bd20b9",
+    "after_sha256": "b706b594fa8069aaa459bd63da0f4c9ee2df951c38a05c39553ac05fd9943202",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-investment-committee-memo/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-investment-committee-memo/SKILL.md",
+    "before_sha256": "68abd08cfe5e073e3c446a3f675f44c5bf98f57434dba679e8acd8a763379a8b",
+    "after_sha256": "7fb1ff76229c3ccf08ef62bb84ebcb5154ee5a635b81519e3b75cde0f3ddd018",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/update-pet/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/update-pet/SKILL.md",
+    "before_sha256": "c63c98d67b6ad781a72a8f9837ba1fb5e2d2a8054a2562e4025890a97d8a0e67",
+    "after_sha256": "bf06ed55842252313598bbde52845cf7810f018f69a2c4ccca948acde926d40e",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/pets/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/pets/SKILL.md",
+    "before_sha256": "1bf5d45fd6a6390aab777229293fb05cef7cf898aac882f8955e40c378e52fcd",
+    "after_sha256": "fae45f3f11d318e4f710459cecaa1825de4b0d419f9b24ea4e9bddc5f5ad3ec0",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/create-pet/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-curated-remote/work-pets/0.1.6/skills/create-pet/SKILL.md",
+    "before_sha256": "841354fb8116f8fdfd3b643b30828f5180196c594d3fed9b669b948b88892af1",
+    "after_sha256": "a1a207b6d37d13067624554ba3d4672526e2ed45b11cc44164ac997a849c2cfe",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-bundled/visualize/1.0.55/skills/visualize/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-bundled/visualize/1.0.55/skills/visualize/SKILL.md",
+    "before_sha256": "766f4e5ee250af9d3c68353d0b8609e40e0ce5926a625d7ca88e073525360d25",
+    "after_sha256": "dfe6137ea3f31232072c858c550d4adb7dc82a3e05064d6cc4f402197c16d70d",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/presentations/26.1025.11240/skills/presentations/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/presentations/26.1025.11240/skills/presentations/SKILL.md",
+    "before_sha256": "bb3726eff35cb82241fd2c3b09fcdb18cc3bf3daefddf8df929d2e0bd4d2af2f",
+    "after_sha256": "1a1034500d2b7ea28305be7e69471795dc42f8af13438d5fbb3435f04d01a3d6",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/template-creator/26.1025.11240/skills/template-creator/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/template-creator/26.1025.11240/skills/template-creator/SKILL.md",
+    "before_sha256": "f1d14fd2847a2e879611a8b8f872f5dc4676a0607958d015274d2dc61e812deb",
+    "after_sha256": "9fcaa58ae18f8d6dd9d60b6564fb0cefcfc0d52c5cb2608620c80ac0b415e7ab",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/pdf/26.1025.11240/skills/pdf/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/pdf/26.1025.11240/skills/pdf/SKILL.md",
+    "before_sha256": "a6e20f4ae66364a06d577dd51e0ce66ee2ef955be129cbe195e0a27f403daaf8",
+    "after_sha256": "0e947016d0d6c3b436275b4e71214ad122a3499967a1e13582b4667832a653e5",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/documents/26.1025.11240/skills/documents/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/documents/26.1025.11240/skills/documents/SKILL.md",
+    "before_sha256": "c9b9ba61ac15f20a600220bc10a380c7753992bbd3c323bfe33fae864adefc21",
+    "after_sha256": "53654330725c172e74b41c023910972915909fb936398b6017e80f2dca1e3ab4",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/spreadsheets/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/spreadsheets/SKILL.md",
+    "before_sha256": "25da47cec10100f2a08df9feaa252864a738816aca30562ae6ba111d7b1eb48e",
+    "after_sha256": "fdbd81b3c28430d5fc8a203bd4a5b696d01ea9c26c6cc4054f415ff8109e764a",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/excel-live-control/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/excel-live-control/SKILL.md",
+    "before_sha256": "1c27488fa2a59ce2cc8925a12527ee9c7aa40ccf0701f3f2719ab17858586e8b",
+    "after_sha256": "59244810b6a88761a6efc75ce98333e71f10ed219e146d27e289e2cf41b51653",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/codebase-knowledge/references/knowledge-spec.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/codebase-knowledge/references/knowledge-spec.md",
+    "before_sha256": null,
+    "after_sha256": "10feca67d47ecee27c0665ec210e08e23febba68093109f3a373ea8a18551cd5",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/codebase-knowledge/scripts/quick_validate.py",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/codebase-knowledge/scripts/quick_validate.py",
+    "before_sha256": null,
+    "after_sha256": "ab2a99218be8ae550751b24437310215aa28f03d65910cd1c6cf60abc1fd9d4c",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/codebase-knowledge/scripts/visualize.py",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/codebase-knowledge/scripts/visualize.py",
+    "before_sha256": null,
+    "after_sha256": "6261fb5da848d4bf93b0be46131ba260ab053058c5ee210691ab4192c110539b",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.agents/skills/codebase-knowledge/agents/openai.yaml",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.agents/skills/codebase-knowledge/agents/openai.yaml",
+    "before_sha256": null,
+    "after_sha256": "5b6b41ffe2ec70a5974ce5a5ba199104426cf3e6ba51998a78922db92e719f28",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/documents/26.1025.11240/skills/documents/references/equations.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/documents/26.1025.11240/skills/documents/references/equations.md",
+    "before_sha256": null,
+    "after_sha256": "644f392bbcebe24ec0f2d1e277d11c50cee798507f0c7bfda30f2cf7636d84e6",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/presentations/26.1025.11240/skills/presentations/references/writing-quality.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/presentations/26.1025.11240/skills/presentations/references/writing-quality.md",
+    "before_sha256": null,
+    "after_sha256": "189b6cddc2fd05a7dbe2c96defa3aad85b1bf234a0a4ac80b3a65e514980d4ca",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/spreadsheets/references/workbook-quality.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/spreadsheets/26.1025.11240/skills/spreadsheets/references/workbook-quality.md",
+    "before_sha256": null,
+    "after_sha256": "0d8a491eb424491af37ae8cbf068d54fd7dcd33db8f2e267d4e99e771bb00225",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-primary-runtime/template-creator/26.1025.11240/skills/template-creator/references/create-workflow.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-primary-runtime/template-creator/26.1025.11240/skills/template-creator/references/create-workflow.md",
+    "before_sha256": null,
+    "after_sha256": "0ab93197258a56af8b4da93ac7b78c79a75aab197b8efe4e491423a64fc191ab",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/plugins/cache/openai-bundled/visualize/1.0.55/skills/visualize/references/specialized-layouts.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/plugins/cache/openai-bundled/visualize/1.0.55/skills/visualize/references/specialized-layouts.md",
+    "before_sha256": null,
+    "after_sha256": "63a1a99af6ff0dd169c84142393fcab42c690ea3fd1846aace2d496dd97c1466",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/review-agent/SKILL.md",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/review-agent/SKILL.md",
+    "before_sha256": "07079efd0dc76f05fade424e5dfb048dce1de2df7626e1a4f56292a4f3f92228",
+    "after_sha256": "5b20bcd952158285f87f75fa5e501840e1c65252d051237a7dcc852cb883311a",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/skill-creator/scripts/check_resources.py",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/skill-creator/scripts/check_resources.py",
+    "before_sha256": null,
+    "after_sha256": "27667150ea00d0207a900825bd797400be7f7ff77b467d05eca33b731ee4c4a6",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/skill-creator/scripts/quick_validate.py",
+    "before_sha256": "ee6dba90f44d37171c5a6edb8095979c54919ff6822c1a907afca2e78c48738c",
+    "after_sha256": "fc25aa095ed5c4cc3d2bf0c485f5996d215276a5ad427e97d449c9747ebfe467",
+    "changed": true
+  },
+  {
+    "target": "/home/surajsinh/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py",
+    "staged": "/home/surajsinh/Desktop/pr-review/skill-fixes/staged/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py",
+    "before_sha256": "38f311b75664bb063808f982c600271ebc4b560830f491705190f88a94e3e781",
+    "after_sha256": "01f4341d8c9df7328f1ace4a16bcfea944d1899b78e8a2a2f9cc5d6ebc0111db",
+    "changed": true
+  }
+]
